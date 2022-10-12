@@ -2,7 +2,7 @@
 
 namespace Domain;
 
-public class Mealbox
+public class MealBox
 {
     public int Id { get; set; }
 

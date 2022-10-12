@@ -4,14 +4,14 @@
     "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Persistence\\Persistence.csproj": {}
   },
   "projects": {
-    "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj": {
+    "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj",
+        "projectPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Lucas de Kleijn\\.nuget\\packages\\",
-        "outputPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\obj\\",
+        "outputPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas de Kleijn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,8 +83,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj"
+              "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj"
               }
             }
           }

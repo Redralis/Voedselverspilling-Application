@@ -21,7 +21,7 @@ public class ApplicationDbContext : DbContext
     
     public DbSet<Product> Product { get; set; }
     
-    public DbSet<Mealbox> MealBox { get; set; }
+    public DbSet<MealBox> MealBox { get; set; }
     
     public DbSet<Employee> Employee { get; set; }
     
