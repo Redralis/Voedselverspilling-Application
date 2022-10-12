@@ -1,6 +1,6 @@
 ﻿namespace Domain.Services;
 
-public interface Canteen
+public interface ICanteenRepository
 {
     public Canteen CreateCanteen(Canteen canteen);
     

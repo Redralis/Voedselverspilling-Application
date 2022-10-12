@@ -85,6 +85,9 @@
             "projectReferences": {
               "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj": {
                 "projectPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain.csproj"
+              },
+              "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj"
               }
             }
           }
