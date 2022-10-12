@@ -22,7 +22,7 @@ public class MealBox
     
     public Student? ReservedBy { get; set; }
 
-    public List<Product> Products { get; set; } = new List<Product>();
+    public ICollection<Product> Products { get; set; } = new List<Product>();
 
     public Canteen Canteen { get; set; } = new Canteen();
     
