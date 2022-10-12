@@ -10,4 +10,6 @@ public interface IMealBoxRepository
 
     public MealBox DeleteMealBox(int id);
 
+    public List<MealBox> GetMealBoxes();
+
 }

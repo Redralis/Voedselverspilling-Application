@@ -10,4 +10,6 @@ public interface IProductRepository
 
     public Product DeleteProduct(int id);
 
+    public List<Product> GetProducts();
+
 }
