@@ -14,7 +14,7 @@ public class EmployeeRepository : IEmployeeRepository
     
     public void CreateEmployee(Employee? employee)
     {
-        _context.Employee.Add(employee);
+        if (employee != null) _context.Employee.Add(employee);
         _context.SaveChanges();
     }
 

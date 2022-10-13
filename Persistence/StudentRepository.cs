@@ -14,7 +14,7 @@ public class StudentRepository : IStudentRepository
     
     public void CreateStudent(Student? student)
     {
-        _context.Student.Add(student);
+        if (student != null) _context.Student.Add(student);
         _context.SaveChanges();
     }
 

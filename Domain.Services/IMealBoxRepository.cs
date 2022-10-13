@@ -10,6 +10,6 @@ public interface IMealBoxRepository
 
     public void DeleteMealBox(MealBox mealBox);
 
-    public ICollection<MealBox?> GetMealBoxes();
+    public List<MealBox> GetMealBoxes();
 
 }

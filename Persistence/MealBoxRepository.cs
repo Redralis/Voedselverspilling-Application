@@ -14,7 +14,7 @@ public class MealBoxRepository : IMealBoxRepository
     
     public void CreateMealBox(MealBox? mealBox)
     {
-        _context.MealBox.Add(mealBox);
+        if (mealBox != null) _context.MealBox.Add(mealBox);
         _context.SaveChanges();
     }
 
@@ -35,7 +35,7 @@ public class MealBoxRepository : IMealBoxRepository
         _context.SaveChanges();
     }
 
-    public ICollection<MealBox?> GetMealBoxes()
+    public List<MealBox> GetMealBoxes()
     {
         return _context.MealBox.ToList();
     }

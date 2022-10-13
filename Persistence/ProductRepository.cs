@@ -14,7 +14,7 @@ public class ProductRepository : IProductRepository
     
     public void CreateProduct(Product? product)
     {
-        _context.Product.Add(product);
+        if (product != null) _context.Product.Add(product);
         _context.SaveChanges();
     }
 
@@ -35,7 +35,7 @@ public class ProductRepository : IProductRepository
         _context.SaveChanges();
     }
 
-    public ICollection<Product?> GetProducts()
+    public List<Product> GetProducts()
     {
         return _context.Product.ToList();
     }

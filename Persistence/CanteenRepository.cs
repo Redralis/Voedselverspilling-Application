@@ -15,7 +15,7 @@ public class CanteenRepository : ICanteenRepository
 
     public void CreateCanteen(Canteen? canteen)
     {
-        _context.Canteen.Add(canteen);
+        if (canteen != null) _context.Canteen.Add(canteen);
         _context.SaveChanges();
     }
 

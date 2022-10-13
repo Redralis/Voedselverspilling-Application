@@ -10,6 +10,6 @@ public interface IProductRepository
 
     public void DeleteProduct(Product product);
 
-    public ICollection<Product?> GetProducts();
+    public List<Product> GetProducts();
 
 }

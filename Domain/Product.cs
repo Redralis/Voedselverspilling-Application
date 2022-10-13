@@ -9,4 +9,6 @@ public class Product
     public bool IsAlcoholic { get; set; }
 
     public string Photo { get; set; } = string.Empty;
+    
+    public ICollection<MealBox> MealBox { get; set; } = new List<MealBox>();
 }
