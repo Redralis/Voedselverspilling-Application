@@ -109,21 +109,21 @@ public class ApplicationDbContext : DbContext
         
         // Giving MealBoxes products
         modelBuilder.Entity<MealBox>()
-            .HasMany(p => p.Products)
-            .WithMany(p => p.MealBoxes)
+            .HasMany(p => p.Product)
+            .WithMany(p => p.MealBox)
             .UsingEntity(j => 
                 j.HasData(
                     new
                     {
-                        MealBoxesId = 1, ProductsId = 1
+                        MealBoxId = 1, ProductId = 1
                     },
                     new
                     {
-                        MealBoxesId = 1, ProductsId = 4
+                        MealBoxId = 1, ProductId = 4
                     },
                     new
                     {
-                        MealBoxesId = 2, ProductsId = 2
+                        MealBoxId = 2, ProductId = 2
                     }));
     }
     
