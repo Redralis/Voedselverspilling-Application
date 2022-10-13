@@ -9,6 +9,8 @@ public class Employee
     public string Email { get; set; } = string.Empty;
 
     public string EmployeeNr { get; set; } = string.Empty;
+    
+    public Canteen Canteen { get; set; } = null!;
+    public int CanteenId { get; set; }
 
-    public string Location { get; set; } = string.Empty;
 }

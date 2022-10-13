@@ -1,4 +1,6 @@
-﻿namespace Domain;
+﻿using System.Threading.Tasks.Dataflow;
+
+namespace Domain;
 
 public class Canteen
 {

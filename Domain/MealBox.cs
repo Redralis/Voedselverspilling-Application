@@ -21,9 +21,13 @@ public class MealBox
     public string MealType { get; set; } = string.Empty;
     
     public Student? ReservedBy { get; set; }
+    
+    public int? StudentId { get; set; }
 
-    public ICollection<Product> Products { get; set; } = new List<Product>();
+    public ICollection<Product> Products { get; set; }
 
-    public Canteen Canteen { get; set; } = new Canteen();
+    public Canteen Canteen { get; set; }
+    
+    public int CanteenId { get; set; }
     
 }

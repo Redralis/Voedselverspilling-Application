@@ -15,7 +15,10 @@ public class ApplicationDbContext : DbContext
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlServer("data source=LAPTOP-HM5F12SM;initial catalog=VoedselVerspillingDb;trusted_connection=true;TrustServerCertificate=True");
+    {
+        options.UseSqlServer("data source=LAPTOP-HM5F12SM;initial catalog=VoedselVerspillingDb;trusted_connection=true;TrustServerCertificate=True");
+    }
+        
 
     public DbSet<Student> Student { get; set; }
     
@@ -29,7 +32,7 @@ public class ApplicationDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Making testing data for the database, starting with Student
+        // Making students
         modelBuilder.Entity<Student>()
             .HasData(
                 new Student
@@ -57,8 +60,71 @@ public class ApplicationDbContext : DbContext
                 new Product
                 {
                     Id = 3, Name = "Sandwich", IsAlcoholic = false, Photo = "Picture of a sandwich"
+                },
+                new Product
+                {
+                    Id = 4, Name = "Water", IsAlcoholic = false, Photo = "Picture of a bottle of water"
                 });
         
+        // Making canteens
+        modelBuilder.Entity<Canteen>()
+            .HasData(
+                new Canteen
+                {
+                    Id = 1, City = "Breda", Address = "Lovensdijkstraat 61", ServesWarmMeals = true
+                },
+                new Canteen
+                {
+                    Id = 2, City = "Breda", Address = "Lovensdijkstraat 63", ServesWarmMeals = true
+                });
+        
+
+        // Making employees
+        modelBuilder.Entity<Employee>()
+            .HasData(
+                new Employee
+                {
+                    Id = 1, Name = "Quinn", Email = "quinn@email.com", EmployeeNr = "2187362", CanteenId = 1
+                },
+                new Employee
+                {
+                    Id = 2, Name = "Hans Gerard", Email = "hansgerard@email.com", EmployeeNr = "2193726", CanteenId = 2
+                });
+        
+        // Making MealBoxes
+        DateTime time = new DateTime(2022, 11, 5, 13, 30, 0);
+        modelBuilder.Entity<MealBox>()
+            .HasData(
+                new MealBox
+                {
+                    Id = 1, Name = "Gezonde maaltijd box", City = "Breda", PickUpTime = time, 
+                    PickUpBy = time.AddDays(1), IsEighteen = false, Price = 22.50m, MealType = "Box", StudentId = 1,
+                    CanteenId = 1
+                },
+                new MealBox
+                {
+                    Id = 2, Name = "Zaterdagmiddag", City = "Breda", PickUpTime = time, 
+                    PickUpBy = time.AddDays(2), IsEighteen = true, Price = 5.25m, MealType = "Box", CanteenId = 2
+                });
+        
+        // Giving MealBoxes products
+        modelBuilder.Entity<MealBox>()
+            .HasMany(p => p.Products)
+            .WithMany(p => p.MealBoxes)
+            .UsingEntity(j => 
+                j.HasData(
+                    new
+                    {
+                        MealBoxesId = 1, ProductsId = 1
+                    },
+                    new
+                    {
+                        MealBoxesId = 1, ProductsId = 4
+                    },
+                    new
+                    {
+                        MealBoxesId = 2, ProductsId = 2
+                    }));
     }
     
 }

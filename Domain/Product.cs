@@ -10,5 +10,5 @@ public class Product
 
     public string Photo { get; set; } = string.Empty;
     
-    public ICollection<MealBox> MealBox { get; set; } = new List<MealBox>();
+    public ICollection<MealBox> MealBoxes { get; set; } = new List<MealBox>();
 }
