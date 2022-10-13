@@ -2,14 +2,14 @@
 
 public interface IProductRepository
 {
-    public Product CreateProduct(Product product);
+    public void CreateProduct(Product? product);
     
-    public Product GetProduct(int id);
+    public Product? GetProduct(int id);
 
-    public Product EditProduct(Product product);
+    public void EditProduct(Product product);
 
-    public Product DeleteProduct(int id);
+    public void DeleteProduct(Product product);
 
-    public List<Product> GetProducts();
+    public ICollection<Product?> GetProducts();
 
 }

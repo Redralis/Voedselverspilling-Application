@@ -2,12 +2,12 @@
 
 public interface ICanteenRepository
 {
-    public Canteen CreateCanteen(Canteen canteen);
+    public void CreateCanteen(Canteen? canteen);
     
-    public Canteen GetCanteen(int id);
+    public Canteen? GetCanteen(int id);
 
-    public Canteen EditCanteen(Canteen canteen);
+    public void EditCanteen(Canteen canteen);
 
-    public Canteen DeleteCanteen(int id);
+    public void DeleteCanteen(Canteen canteen);
 
 }

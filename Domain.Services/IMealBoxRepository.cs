@@ -2,14 +2,14 @@
 
 public interface IMealBoxRepository
 {
-    public MealBox CreateMealBox(MealBox mealBox);
+    public void CreateMealBox(MealBox? mealBox);
     
-    public MealBox GetMealBox(int id);
+    public MealBox? GetMealBox(int id);
 
-    public MealBox EditMealBox(MealBox mealBox);
+    public void EditMealBox(MealBox mealBox);
 
-    public MealBox DeleteMealBox(int id);
+    public void DeleteMealBox(MealBox mealBox);
 
-    public List<MealBox> GetMealBoxes();
+    public ICollection<MealBox?> GetMealBoxes();
 
 }

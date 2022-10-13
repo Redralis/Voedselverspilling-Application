@@ -2,12 +2,12 @@
 
 public interface IEmployeeRepository
 {
-    public Employee CreateEmployee(Employee employee);
+    public void CreateEmployee(Employee? employee);
     
-    public Employee GetEmployee(int id);
+    public Employee? GetEmployee(int id);
 
-    public Employee EditEmployee(Employee employee);
+    public void EditEmployee(Employee employee);
 
-    public Employee DeleteEmployee(int id);
+    public void DeleteEmployee(Employee employee);
     
 }
