@@ -15,12 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/BeschikbareMaaltijden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCZXNjaGlrYmFyZU1hYWx0aWpkZW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Shared/Error.cshtml]

@@ -77,7 +77,6 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 2, City = "Breda", Address = "Lovensdijkstraat 63", ServesWarmMeals = true
                 });
-        
 
         // Making employees
         modelBuilder.Entity<Employee>()
@@ -125,6 +124,7 @@ public class ApplicationDbContext : DbContext
                     {
                         MealBoxId = 2, ProductId = 2
                     }));
+        
     }
     
 }

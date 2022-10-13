@@ -880,7 +880,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj": "1.0.0",
           "Domain": "1.0.0",
           "Domain.Services": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0-rc.1.22426.7",
@@ -3133,16 +3132,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\Domain\\Domain\\Domain.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

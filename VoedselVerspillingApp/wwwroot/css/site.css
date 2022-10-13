@@ -16,3 +16,37 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bgbluegreen, .btn-main-color, .footer {
+  background-color: #184C4C !important;
+}
+
+footer {
+  color: white;
+}
+
+.subtext {
+  font-size: 1.3rem;
+  font-family: Verdana, serif;
+}
+
+.btn-main {
+  background-color: #184C4C;
+  color: white;
+}
+
+.btn-main:hover {
+  color: white;
+}
+
+.homeImages {
+  margin-bottom: 2%;
+  width: 100%;
+}
+
+.homeImage {
+  border-radius: 50%;
+  margin: 5% 10% 2% 10%;
+  width: 90%;
+}
+
