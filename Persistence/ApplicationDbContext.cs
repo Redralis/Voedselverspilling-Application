@@ -61,22 +61,53 @@ public class ApplicationDbContext : DbContext
             .HasData(
                 new Product
                 {
-                    Id = 1, Name = "Hot dog", IsAlcoholic = false, Photo = "Picture of a hot dog"
+                    Id = 1, Name = "Wit brood", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/2942327/pexels-photo-2942327.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                 },
                 new Product
                 {
-                    Id = 2, Name = "Beer", IsAlcoholic = true, Photo = "Picture of a beer glass"
+                    Id = 2, Name = "Bruin brood", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/8599720/pexels-photo-8599720.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                 },
                 new Product
                 {
-                    Id = 3, Name = "Sandwich", IsAlcoholic = false, Photo = "Picture of a sandwich"
+                    Id = 3, Name = "Kippenpoten", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/3926125/pexels-photo-3926125.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                 },
                 new Product
                 {
-                    Id = 4, Name = "Water", IsAlcoholic = false, Photo = "Picture of a bottle of water"
+                    Id = 4, Name = "Taart", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 5, Name = "Cola", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 6, Name = "Limonade", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 7, Name = "Bier", IsAlcoholic = true, Photo = "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 8, Name = "Vodka", IsAlcoholic = true, Photo = "https://images.pexels.com/photos/1170599/pexels-photo-1170599.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 9, Name = "IJs", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/1294943/pexels-photo-1294943.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 10, Name = "Macarons", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 11, Name = "Popcorn", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 12, Name = "Chips", IsAlcoholic = false, Photo = "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                 });
         
-        // Making canteens
         modelBuilder.Entity<Canteen>()
             .HasData(
                 new Canteen
@@ -86,6 +117,10 @@ public class ApplicationDbContext : DbContext
                 new Canteen
                 {
                     Id = 2, City = "Breda", Address = "Lovensdijkstraat 63", ServesWarmMeals = true
+                },
+                new Canteen
+                {
+                    Id = 3, City = "Tilburg", Address = "Professor Cobbenhagenlaan 13", ServesWarmMeals = true
                 });
 
         // Making employees
@@ -101,29 +136,51 @@ public class ApplicationDbContext : DbContext
                 });
         
         // Making MealBoxes
-        DateTime time = new DateTime(2022, 11, 5, 13, 30, 0);
+        // 4 pickup times
+        DateTime box1Time = new DateTime(2022, 11, 5, 13, 30, 0);
+        DateTime box2Time = new DateTime(2022, 11, 11, 15, 00, 0);
+        DateTime box3Time = new DateTime(2022, 11, 17, 12, 00, 0);
+        DateTime box4Time = new DateTime(2022, 11, 21, 18, 30, 0);
+        DateTime box5Time = new DateTime(2022, 11, 22, 14, 20, 0);
+        DateTime box6Time = new DateTime(2022, 11, 26, 16, 15, 0);
+        
         modelBuilder.Entity<MealBox>()
             .HasData(
                 new MealBox
                 {
-                    Id = 1, Name = "Gezonde maaltijd box", City = "Breda", PickUpTime = time, 
-                    PickUpBy = time.AddDays(1), IsEighteen = false, Price = 22.50m, MealType = "Box", StudentId = 1,
-                    CanteenId = 1
+                    Id = 1, Name = "Brood assortiment", City = "Breda", 
+                    PickUpTime = box1Time, PickUpBy = box1Time.AddDays(1), IsEighteen = false, Price = 22.50m, 
+                    MealType = "Box", CanteenId = 1
                 },
                 new MealBox
                 {
-                    Id = 2, Name = "Zaterdagmiddag", City = "Breda", PickUpTime = time, 
-                    PickUpBy = time.AddDays(2), IsEighteen = true, Price = 5.25m, MealType = "Box", CanteenId = 2
+                    Id = 2, Name = "Warme maaltijd", City = "Breda", 
+                    PickUpTime = box2Time, PickUpBy = box2Time.AddDays(2), IsEighteen = false, Price = 5.25m, 
+                    MealType = "Box", CanteenId = 2
                 },
                 new MealBox
                 {
-                    Id = 3, Name = "Panini box", City = "Breda", PickUpTime = time, 
-                    PickUpBy = time.AddDays(1), IsEighteen = false, Price = 15.50m, MealType = "Box", CanteenId = 2
+                    Id = 3, Name = "Drank arrangement", City = "Breda", 
+                    PickUpTime = box3Time, PickUpBy = box3Time.AddDays(1), IsEighteen = false, Price = 15.50m, 
+                    MealType = "Box", CanteenId = 2
                 },
                 new MealBox
                 {
-                    Id = 4, Name = "18+'ers box", City = "Breda", PickUpTime = time, 
-                    PickUpBy = time.AddDays(1), IsEighteen = true, Price = 30.00m, MealType = "Box", CanteenId = 1
+                    Id = 4, Name = "Alcohol arrangement", City = "Breda", 
+                    PickUpTime = box4Time, PickUpBy = box4Time.AddDays(1), IsEighteen = true, Price = 30.00m, 
+                    MealType = "Box", CanteenId = 1
+                },
+                new MealBox
+                {
+                    Id = 5, Name = "Dessert mix", City = "Breda", 
+                    PickUpTime = box5Time, PickUpBy = box5Time.AddDays(1), IsEighteen = false, Price = 17.50m, 
+                    MealType = "Box", StudentId = 1, CanteenId = 1
+                },
+                new MealBox
+                {
+                    Id = 6, Name = "Snacks", City = "Tilburg", 
+                    PickUpTime = box6Time, PickUpBy = box6Time.AddDays(1), IsEighteen = false, Price = 7.50m, 
+                    MealType = "Box", CanteenId = 3
                 });
         
         // Giving MealBoxes products
@@ -138,23 +195,47 @@ public class ApplicationDbContext : DbContext
                     },
                     new
                     {
-                        MealBoxId = 1, ProductId = 4
+                        MealBoxId = 1, ProductId = 2
                     },
                     new
                     {
-                        MealBoxId = 2, ProductId = 2
+                        MealBoxId = 2, ProductId = 3
                     },
                     new
                     {
-                        MealBoxId = 3, ProductId = 2
+                        MealBoxId = 2, ProductId = 4
                     },
                     new
                     {
-                        MealBoxId = 3, ProductId = 3
+                        MealBoxId = 3, ProductId = 5
                     },
                     new
                     {
-                        MealBoxId = 4, ProductId = 1
+                        MealBoxId = 3, ProductId = 6
+                    },
+                    new
+                    {
+                        MealBoxId = 4, ProductId = 7
+                    },
+                    new
+                    {
+                        MealBoxId = 4, ProductId = 8
+                    },
+                    new
+                    {
+                        MealBoxId = 5, ProductId = 9
+                    },
+                    new
+                    {
+                        MealBoxId = 5, ProductId = 10
+                    },
+                    new
+                    {
+                        MealBoxId = 6, ProductId = 11
+                    },
+                    new
+                    {
+                        MealBoxId = 6, ProductId = 12
                     }));
         
     }

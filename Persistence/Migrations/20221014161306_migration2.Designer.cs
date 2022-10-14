@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221014161306_migration2")]
+    partial class migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,13 +61,6 @@ namespace Persistence.Migrations
                             Id = 2,
                             Address = "Lovensdijkstraat 63",
                             City = "Breda",
-                            ServesWarmMeals = true
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Professor Cobbenhagenlaan 13",
-                            City = "Tilburg",
                             ServesWarmMeals = true
                         });
                 });
@@ -174,7 +170,8 @@ namespace Persistence.Migrations
                             Name = "Brood assortiment",
                             PickUpBy = new DateTime(2022, 11, 6, 13, 30, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified),
-                            Price = 22.50m
+                            Price = 22.50m,
+                            StudentId = 1
                         },
                         new
                         {
@@ -195,7 +192,7 @@ namespace Persistence.Migrations
                             City = "Breda",
                             IsEighteen = false,
                             MealType = "Box",
-                            Name = "Drank arrangement",
+                            Name = "Frisdrank arrangement",
                             PickUpBy = new DateTime(2022, 11, 18, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 15.50m
@@ -207,35 +204,10 @@ namespace Persistence.Migrations
                             City = "Breda",
                             IsEighteen = true,
                             MealType = "Box",
-                            Name = "Alcohol arrangement",
+                            Name = "Diverse mixdrankjes",
                             PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             Price = 30.00m
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CanteenId = 1,
-                            City = "Breda",
-                            IsEighteen = false,
-                            MealType = "Box",
-                            Name = "Dessert mix",
-                            PickUpBy = new DateTime(2022, 11, 23, 14, 20, 0, 0, DateTimeKind.Unspecified),
-                            PickUpTime = new DateTime(2022, 11, 22, 14, 20, 0, 0, DateTimeKind.Unspecified),
-                            Price = 17.50m,
-                            StudentId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CanteenId = 3,
-                            City = "Tilburg",
-                            IsEighteen = false,
-                            MealType = "Box",
-                            Name = "Snacks",
-                            PickUpBy = new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified),
-                            PickUpTime = new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
-                            Price = 7.50m
                         });
                 });
 
@@ -267,85 +239,29 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             IsAlcoholic = false,
-                            Name = "Wit brood",
-                            Photo = "https://images.pexels.com/photos/2942327/pexels-photo-2942327.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                            Name = "Hot dog",
+                            Photo = "Picture of a hot dog"
                         },
                         new
                         {
                             Id = 2,
-                            IsAlcoholic = false,
-                            Name = "Bruin brood",
-                            Photo = "https://images.pexels.com/photos/8599720/pexels-photo-8599720.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                            IsAlcoholic = true,
+                            Name = "Beer",
+                            Photo = "Picture of a beer glass"
                         },
                         new
                         {
                             Id = 3,
                             IsAlcoholic = false,
-                            Name = "Kippenpoten",
-                            Photo = "https://images.pexels.com/photos/3926125/pexels-photo-3926125.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                            Name = "Sandwich",
+                            Photo = "Picture of a sandwich"
                         },
                         new
                         {
                             Id = 4,
                             IsAlcoholic = false,
-                            Name = "Taart",
-                            Photo = "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            IsAlcoholic = false,
-                            Name = "Cola",
-                            Photo = "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            IsAlcoholic = false,
-                            Name = "Limonade",
-                            Photo = "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            IsAlcoholic = true,
-                            Name = "Bier",
-                            Photo = "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            IsAlcoholic = true,
-                            Name = "Vodka",
-                            Photo = "https://images.pexels.com/photos/1170599/pexels-photo-1170599.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            IsAlcoholic = false,
-                            Name = "IJs",
-                            Photo = "https://images.pexels.com/photos/1294943/pexels-photo-1294943.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            IsAlcoholic = false,
-                            Name = "Macarons",
-                            Photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            IsAlcoholic = false,
-                            Name = "Popcorn",
-                            Photo = "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            IsAlcoholic = false,
-                            Name = "Chips",
-                            Photo = "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                            Name = "Water",
+                            Photo = "Picture of a bottle of water"
                         });
                 });
 
@@ -436,57 +352,27 @@ namespace Persistence.Migrations
                         new
                         {
                             MealBoxId = 1,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            MealBoxId = 2,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            MealBoxId = 2,
                             ProductId = 4
                         },
                         new
                         {
-                            MealBoxId = 3,
-                            ProductId = 5
+                            MealBoxId = 2,
+                            ProductId = 2
                         },
                         new
                         {
                             MealBoxId = 3,
-                            ProductId = 6
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            MealBoxId = 3,
+                            ProductId = 3
                         },
                         new
                         {
                             MealBoxId = 4,
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            MealBoxId = 4,
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            MealBoxId = 5,
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            MealBoxId = 5,
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            MealBoxId = 6,
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            MealBoxId = 6,
-                            ProductId = 12
+                            ProductId = 1
                         });
                 });
 
