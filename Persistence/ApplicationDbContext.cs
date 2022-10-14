@@ -32,6 +32,16 @@ public class ApplicationDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Adding constraints
+        // Student cannot be born in future
+        modelBuilder.Entity<Student>(m => m.ToTable(m => 
+            m.HasCheckConstraint("CK_DateOfBirth_NotInFuture", "DateOfBirth <= GetDate()")));
+        
+        // Student cannot be under 16 years old
+        modelBuilder.Entity<Student>(m => m.ToTable(m => 
+            m.HasCheckConstraint("CK_DateOfBirth_NotUnder16", "DateOfBirth <= DATEADD(yyyy,-16,getdate())")));
+        
+        // Seeded data for testing
         // Making students
         modelBuilder.Entity<Student>()
             .HasData(
