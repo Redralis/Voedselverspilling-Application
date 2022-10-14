@@ -104,6 +104,16 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 2, Name = "Zaterdagmiddag", City = "Breda", PickUpTime = time, 
                     PickUpBy = time.AddDays(2), IsEighteen = true, Price = 5.25m, MealType = "Box", CanteenId = 2
+                },
+                new MealBox
+                {
+                    Id = 3, Name = "Panini box", City = "Breda", PickUpTime = time, 
+                    PickUpBy = time.AddDays(1), IsEighteen = false, Price = 15.50m, MealType = "Box", CanteenId = 2
+                },
+                new MealBox
+                {
+                    Id = 4, Name = "18+'ers box", City = "Breda", PickUpTime = time, 
+                    PickUpBy = time.AddDays(1), IsEighteen = true, Price = 30.00m, MealType = "Box", CanteenId = 1
                 });
         
         // Giving MealBoxes products
@@ -123,6 +133,18 @@ public class ApplicationDbContext : DbContext
                     new
                     {
                         MealBoxId = 2, ProductId = 2
+                    },
+                    new
+                    {
+                        MealBoxId = 3, ProductId = 2
+                    },
+                    new
+                    {
+                        MealBoxId = 3, ProductId = 3
+                    },
+                    new
+                    {
+                        MealBoxId = 4, ProductId = 1
                     }));
         
     }

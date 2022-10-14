@@ -41,12 +41,49 @@ footer {
 
 .homeImages {
   margin-bottom: 2%;
+  margin-left: 0;
+  margin-right: 0;
   width: 100%;
 }
 
 .homeImage {
   border-radius: 50%;
-  margin: 5% 10% 2% 10%;
   width: 90%;
+  margin: 5% 10% 2% 5%
 }
 
+.btn-primary, .btn-primary:visited {
+  background-color: #184C4C !important;
+}
+
+.btn-primary:hover {
+  background-color: #298282 !important;
+}
+
+.card {
+  margin-right: 1%;
+  margin-left: 5%;
+  margin-top: 2%;
+  flex-direction: row;
+  padding-left: 0;
+  overflow: auto;
+  background-color: #184C4C;
+  color: white;
+}
+
+.card:hover {
+  background-color: #298282;
+  transition-duration: 0.3s;
+}
+
+.card img {
+  width: 45%;
+}
+
+.price-text {
+  font-size: 1.3rem;
+}
+
+.muted-text {
+  color: lightgray;
+}

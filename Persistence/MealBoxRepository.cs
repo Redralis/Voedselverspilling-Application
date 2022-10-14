@@ -35,9 +35,9 @@ public class MealBoxRepository : IMealBoxRepository
         _context.SaveChanges();
     }
 
-    public List<MealBox> GetMealBoxes()
+    public List<MealBox> GetAvailableMealBoxes()
     {
-        return _context.MealBox.ToList();
+        return _context.MealBox.ToList().Where(m => m.StudentId == null).ToList();
     }
     
 }

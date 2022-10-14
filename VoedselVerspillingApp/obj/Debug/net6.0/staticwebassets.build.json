@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3bwgXGjLAoaDp5ujM6lBqqy925ahuJh3qPQc1WSElHs=",
+  "Hash": "mHRmxH+qm9md2b4ne6Xbj+Dd6dvqaE/4JU0cb4CgTj8=",
   "Source": "VoedselVerspillingApp",
   "BasePath": "_content/VoedselVerspillingApp",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Food1.png"
+    },
+    {
+      "Identity": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\VoedselVerspillingApp\\wwwroot\\Food2.png",
+      "SourceId": "VoedselVerspillingApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\VoedselVerspillingApp\\wwwroot\\",
+      "BasePath": "_content/VoedselVerspillingApp",
+      "RelativePath": "Food2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Food2.png"
     },
     {
       "Identity": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\VoedselVerspillingApp\\wwwroot\\js\\site.js",

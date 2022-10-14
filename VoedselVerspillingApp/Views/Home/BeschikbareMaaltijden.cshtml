@@ -1,6 +1,38 @@
-﻿@{
+﻿@using System.Globalization
+@model IEnumerable<Domain.MealBox>
+
+@{
     ViewData["Title"] = "Beschikbare maaltijden";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p></p>
+
+<div class="text-center" xmlns="http://www.w3.org/1999/html">
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var mealBox in Model)
+        {
+            <div class="card col-md-5">
+                <img class="card-img-top" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP" alt="@mealBox.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@mealBox.Name</h5>
+                    <p class="card-text price-text">€ @mealBox.Price</p>
+                    @if (mealBox.IsEighteen)
+                    {
+                        <p class="card-text">Geen leeftijdsgrens</p>
+                    }
+                    else
+                    {
+                        <p class="card-text">18+ maaltijd</p>
+                    }
+                    <p class="card-text">@mealBox.City<br/>Nog niet gereserveerd!</p>
+                    <p class="card-text pickuptext">
+                        <small class="muted-text">Ophalen op @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)</small>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
