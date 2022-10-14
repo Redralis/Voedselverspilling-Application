@@ -21,6 +21,7 @@
             var mealBox = item.value;
             string modalId = "#exampleModal" + item.i;
             string modalId2 = "exampleModal" + item.i;
+            Random random = new Random();
             <div class="card col-md-5">
                 <img class="card-img-top" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP" alt="@mealBox.Name">
                 <div class="card-body">
@@ -36,7 +37,7 @@
                     }
                     <p class="card-text">
                         @mealBox.City <br/>
-                        <!-- Button trigger modal -->
+                        <!-- Button that triggers the modal -->
                         <button type="button" class="btn btn-primary stretched-link invisible-button shadow-none" data-bs-toggle="modal" data-bs-target=@modalId>
                             Details
                         </button>
@@ -60,10 +61,10 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <img class="card-img-top modalImage" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP" alt="@mealBox.Name">
+                                    <img class="card-img-top modalImage" src="">
                                 </div>
                                 <div class="col-6">
-                                    
+
                                 </div>
                             </div>
                         </div>

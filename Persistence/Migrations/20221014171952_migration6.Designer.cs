@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221014171952_migration6")]
+    partial class migration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,80 +263,6 @@ namespace Persistence.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("MealBoxProduct");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            MealBoxId = 1,
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            MealBoxId = 1,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            MealBoxId = 2,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            MealBoxId = 2,
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            MealBoxId = 3,
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            MealBoxId = 3,
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            MealBoxId = 4,
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            MealBoxId = 4,
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            MealBoxId = 5,
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            MealBoxId = 5,
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 11,
-                            MealBoxId = 6,
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 12,
-                            MealBoxId = 6,
-                            ProductId = 12
-                        });
                 });
 
             modelBuilder.Entity("Domain.Product", b =>
