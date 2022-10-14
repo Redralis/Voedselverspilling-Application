@@ -137,8 +137,8 @@ public class ApplicationDbContext : DbContext
         
         // Making MealBoxes
         // 4 pickup times
-        DateTime box1Time = new DateTime(2022, 11, 5, 13, 30, 0);
-        DateTime box2Time = new DateTime(2022, 11, 11, 15, 00, 0);
+        DateTime box1Time = new DateTime(2022, 11, 11, 15, 00, 0);
+        DateTime box2Time = new DateTime(2022, 11, 5, 13, 30, 0);
         DateTime box3Time = new DateTime(2022, 11, 17, 12, 00, 0);
         DateTime box4Time = new DateTime(2022, 11, 21, 18, 30, 0);
         DateTime box5Time = new DateTime(2022, 11, 22, 14, 20, 0);
