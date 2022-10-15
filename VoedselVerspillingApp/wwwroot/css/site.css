@@ -1,5 +1,9 @@
+/* Start of general styling */
+
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,48 +12,17 @@ html {
     }
 }
 
-html {
-    position: relative;
-    min-height: 100%;
+nav {
+    background-color: #184C4C !important;
 }
 
 body {
     margin-bottom: 60px;
 }
 
-.bgbluegreen, .btn-main-color, .footer {
-    background-color: #184C4C !important;
-}
-
 footer {
+    background-color: #184C4C !important;
     color: white;
-}
-
-.subtext {
-    font-size: 1.3rem;
-    font-family: Verdana, serif;
-}
-
-.btn-main {
-    background-color: #184C4C;
-    color: white;
-}
-
-.btn-main:hover {
-    color: white;
-}
-
-.homeImages {
-    margin-bottom: 2%;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-}
-
-.homeImage {
-    border-radius: 50%;
-    width: 90%;
-    margin: 5% 10% 2% 5%
 }
 
 .btn-brand-color, .btn-brand-color:visited {
@@ -62,6 +35,35 @@ footer {
     background-color: #298282 !important;
     color: white;
 }
+
+/* End of general styling */
+
+/* Start of home page styling */
+
+.subtext {
+    font-size: 1.3rem;
+    font-family: Verdana, serif;
+}
+
+.homeImages {
+    margin-bottom: 2%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.homeImages img {
+    border-radius: 50%;
+    width: 90%;
+    margin: 5% 10% 2% 5%
+}
+
+.big-button {
+    padding: 1% 2.1%;
+}
+
+/* End of home page styling */
+
+/* Start of available meals styling */
 
 .card {
     margin-right: 1%;
@@ -91,10 +93,6 @@ footer {
     color: lightgray;
 }
 
-.modalImage {
-    width: 100%;
-}
-
 .invisible-button {
     opacity: 0;
     height: 0;
@@ -105,6 +103,8 @@ footer {
     margin-top: 3%;
 }
 
-.big-button {
-    padding: 1% 2.1%;
+.pick-up-time-card {
+    margin-top: 2%;
 }
+
+/* End of available meals styling */

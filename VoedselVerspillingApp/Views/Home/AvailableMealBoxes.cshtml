@@ -33,13 +33,13 @@
                 <div class="card-body">
                     <h5 class="card-title">@mealBox.Name</h5>
                     <p class="card-text price-text">€ @mealBox.Price</p>
-                    @if (mealBox.IsEighteen)
+                    @if (!mealBox.IsEighteen)
                     {
-                        <p class="card-text">Geen leeftijdsgrens</p>
+                        <p class="card-text">16+ maaltijdbox</p>
                     }
                     else
                     {
-                        <p class="card-text">18+ maaltijd</p>
+                        <p class="card-text">18+ maaltijdbox</p>
                     }
                     <p class="card-text">
                         @mealBox.City <br/>
@@ -60,18 +60,38 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">@mealBox.Name</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <img class="card-img-top modalImage" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP">
+                                    <img class="card-img-top" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP">
                                 </div>
                                 <div class="col-6">
-
+                                    <div class="row">
+                                        <div class="price-text col-9">
+                                            € @mealBox.Price
+                                        </div>
+                                        <div class="price-text col-3">
+                                            @if (!mealBox.IsEighteen)
+                                            {
+                                                <p class="card-text">16+</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="card-text">18+</p>
+                                            }
+                                        </div>
+                                    </div>
+                                    <p>@mealBox.City</p>
+                                    <p>@mealBox.MealType</p>
+                                    <p>Voorbeeld inhoud:</p>
                                 </div>
+                                <p class="card-text pick-up-time-card">
+                                    Ophalen op @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)
+                                </p>
                             </div>
                         </div>
                         <div class="modal-footer">
