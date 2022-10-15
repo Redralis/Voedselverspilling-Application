@@ -28,6 +28,11 @@ public class HomeController : Controller
         IEnumerable<MealBox> list = _mealBoxRepository.GetAvailableMealBoxes();
         return View(list);
     }
+    
+    public IActionResult EditMealBox()
+    {
+        return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
