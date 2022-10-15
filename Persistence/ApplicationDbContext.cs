@@ -176,37 +176,37 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 1, Name = "Brood assortiment", City = "Breda",
                     PickUpTime = box1Time, PickUpBy = box1Time.AddDays(1), IsEighteen = false, Price = 22.50m,
-                    MealType = "Box", CanteenId = 1
+                    MealType = "Brood box", CanteenId = 1
                 },
                 new MealBox
                 {
                     Id = 2, Name = "Warme maaltijd", City = "Breda",
                     PickUpTime = box2Time, PickUpBy = box2Time.AddDays(2), IsEighteen = false, Price = 5.25m,
-                    MealType = "Box", CanteenId = 2
+                    MealType = "Warme maaltijd box", CanteenId = 2
                 },
                 new MealBox
                 {
                     Id = 3, Name = "Drank arrangement", City = "Breda",
                     PickUpTime = box3Time, PickUpBy = box3Time.AddDays(1), IsEighteen = false, Price = 15.50m,
-                    MealType = "Box", CanteenId = 2
+                    MealType = "Drank box", CanteenId = 2
                 },
                 new MealBox
                 {
                     Id = 4, Name = "Alcohol arrangement", City = "Breda",
                     PickUpTime = box4Time, PickUpBy = box4Time.AddDays(1), IsEighteen = true, Price = 30.00m,
-                    MealType = "Box", CanteenId = 1
+                    MealType = "Alcohol box", CanteenId = 1
                 },
                 new MealBox
                 {
                     Id = 5, Name = "Dessert mix", City = "Breda",
                     PickUpTime = box5Time, PickUpBy = box5Time.AddDays(1), IsEighteen = false, Price = 17.50m,
-                    MealType = "Box", StudentId = 1, CanteenId = 1
+                    MealType = "Dessert box", StudentId = 1, CanteenId = 1
                 },
                 new MealBox
                 {
                     Id = 6, Name = "Snacks", City = "Tilburg",
                     PickUpTime = box6Time, PickUpBy = box6Time.AddDays(1), IsEighteen = false, Price = 7.50m,
-                    MealType = "Box", CanteenId = 3
+                    MealType = "Warme maaltijd", CanteenId = 3
                 });
 
         // Giving MealBoxes products
