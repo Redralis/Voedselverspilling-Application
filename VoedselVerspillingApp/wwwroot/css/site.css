@@ -12,28 +12,19 @@ html {
     }
 }
 
-nav {
-    background-color: #184C4C !important;
-}
-
 body {
     margin-bottom: 60px;
 }
 
-footer {
+nav, footer, .btn-brand-color, .btn-brand-color:visited, .card {
     background-color: #184C4C !important;
     color: white;
 }
 
-.btn-brand-color, .btn-brand-color:visited {
-    background-color: #184C4C !important;
-    color: white;
-    padding: 1.5% 3.1%;
-}
-
-.btn-brand-color:hover {
+.btn-brand-color:hover, .card:hover {
     background-color: #298282 !important;
     color: white;
+    transition-duration: 0.3s;
 }   
 
 /* End of general styling */
@@ -71,8 +62,6 @@ footer {
     flex-direction: row;
     padding-left: 0;
     overflow: auto;
-    background-color: #184C4C;
-    color: white;
 }
 
 .card img {
@@ -82,11 +71,6 @@ footer {
 .card-img-details {
     width: 100%;
     height: 210px;
-}
-
-.card:hover {
-    background-color: #298282;
-    transition-duration: 0.3s;
 }
 
 .price-text {
