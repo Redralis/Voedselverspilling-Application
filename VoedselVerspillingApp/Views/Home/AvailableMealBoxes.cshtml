@@ -12,7 +12,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-4 text-center">
             <button type="button" class="btn btn-brand-color create-meal-button" data-bs-toggle="modal" data-bs-target="#CreateMealModal">
                 Maaltijdbox aanmaken
             </button>
@@ -91,13 +91,15 @@
                                             }
                                         </div>
                                     </div>
-                                    <p>@mealBox.City</p>
-                                    <p>@mealBox.MealType</p>
+                                    <p>Stad: @mealBox.City</p>
+                                    <p>Type: @mealBox.MealType</p>
                                     <p>Voorbeeld inhoud:</p>
-                                    @foreach (var product in mealBox.MealBox_Product)
-                                    {
-                                        @product.product.Name<br/>
-                                    }
+                                    <ul class="list-group list-group-flush products-in-list">
+                                        @foreach (var product in mealBox.MealBox_Product)
+                                        {
+                                            <li class="list-group-item">@product.product.Name</li>
+                                        }
+                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -236,39 +236,47 @@ public class ApplicationDbContext : DbContext
                 },
                 new
                 {
-                    Id = 4, MealBoxId = 2, ProductId = 4
+                    Id = 4, MealBoxId = 2, ProductId = 5
                 },
                 new
                 {
-                    Id = 5, MealBoxId = 3, ProductId = 5
+                    Id = 5, MealBoxId = 2, ProductId = 4
                 },
                 new
                 {
-                    Id = 6, MealBoxId = 3, ProductId = 6
+                    Id = 6, MealBoxId = 3, ProductId = 5
                 },
                 new
                 {
-                    Id = 7, MealBoxId = 4, ProductId = 7
+                    Id = 7, MealBoxId = 3, ProductId = 6
                 },
                 new
                 {
-                    Id = 8, MealBoxId = 4, ProductId = 8
+                    Id = 8, MealBoxId = 4, ProductId = 7
                 },
                 new
                 {
-                    Id = 9, MealBoxId = 5, ProductId = 9
+                    Id = 9, MealBoxId = 4, ProductId = 8
                 },
                 new
                 {
-                    Id = 10, MealBoxId = 5, ProductId = 10
+                    Id = 10, MealBoxId = 5, ProductId = 9
                 },
                 new
                 {
-                    Id = 11, MealBoxId = 6, ProductId = 11
+                    Id = 11, MealBoxId = 5, ProductId = 10
                 },
                 new
                 {
-                    Id = 12, MealBoxId = 6, ProductId = 12
+                    Id = 12, MealBoxId = 6, ProductId = 11
+                },
+                new
+                {
+                    Id = 13, MealBoxId = 6, ProductId = 12
+                },
+                new
+                {
+                    Id = 14, MealBoxId = 6, ProductId = 6
                 });
        
     }
