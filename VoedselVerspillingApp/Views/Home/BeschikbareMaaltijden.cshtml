@@ -1,5 +1,7 @@
 ﻿@using System.Globalization
 @using Domain
+@using Microsoft.EntityFrameworkCore
+@using Persistence
 @model IEnumerable<Domain.MealBox>
 
 @{
@@ -21,7 +23,7 @@
             var mealBox = item.value;
             string modalId = "#exampleModal" + item.i;
             string modalId2 = "exampleModal" + item.i;
-            Random random = new Random();
+
             <div class="card col-md-5">
                 <img class="card-img-top" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP" alt="@mealBox.Name">
                 <div class="card-body">

@@ -270,5 +270,6 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 12, MealBoxId = 6, ProductId = 12
                 });
+       
     }
 }
