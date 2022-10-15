@@ -15,8 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/BeschikbareMaaltijden.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCZXNjaGlrYmFyZU1hYWx0aWpkZW4uY3NodG1s
+[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/AvailableMealBoxes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBdmFpbGFibGVNZWFsQm94ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/EditMealBox.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0TWVhbEJveC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Avans/Jaar-2/Server-Side-Web-Development/Projecten/AvansProject/AvansProject/VoedselVerspillingApp/Views/Home/Index.cshtml]

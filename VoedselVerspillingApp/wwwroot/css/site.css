@@ -1,98 +1,110 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .bgbluegreen, .btn-main-color, .footer {
-  background-color: #184C4C !important;
+    background-color: #184C4C !important;
 }
 
 footer {
-  color: white;
+    color: white;
 }
 
 .subtext {
-  font-size: 1.3rem;
-  font-family: Verdana, serif;
+    font-size: 1.3rem;
+    font-family: Verdana, serif;
 }
 
 .btn-main {
-  background-color: #184C4C;
-  color: white;
+    background-color: #184C4C;
+    color: white;
 }
 
 .btn-main:hover {
-  color: white;
+    color: white;
 }
 
 .homeImages {
-  margin-bottom: 2%;
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
+    margin-bottom: 2%;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
 }
 
 .homeImage {
-  border-radius: 50%;
-  width: 90%;
-  margin: 5% 10% 2% 5%
+    border-radius: 50%;
+    width: 90%;
+    margin: 5% 10% 2% 5%
 }
 
-.btn-primary, .btn-primary:visited {
-  background-color: #184C4C !important;
+.btn-brand-color, .btn-brand-color:visited {
+    background-color: #184C4C !important;
+    color: white;
+    padding: 1.5% 3.1%;
 }
 
-.btn-primary:hover {
-  background-color: #298282 !important;
+.btn-brand-color:hover {
+    background-color: #298282 !important;
+    color: white;
 }
 
 .card {
-  margin-right: 1%;
-  margin-left: 5%;
-  margin-top: 2%;
-  flex-direction: row;
-  padding-left: 0;
-  overflow: auto;
-  background-color: #184C4C;
-  color: white;
+    margin-right: 1%;
+    margin-left: 5%;
+    margin-top: 2%;
+    flex-direction: row;
+    padding-left: 0;
+    overflow: auto;
+    background-color: #184C4C;
+    color: white;
 }
 
 .card img {
-  width: 45%;
+    width: 45%;
 }
 
 .card:hover {
-  background-color: #298282;
-  transition-duration: 0.3s;
+    background-color: #298282;
+    transition-duration: 0.3s;
 }
 
 .price-text {
-  font-size: 1.3rem;
+    font-size: 1.3rem;
 }
 
 .muted-text {
-  color: lightgray;
+    color: lightgray;
 }
 
 .modalImage {
-  width: 100%;
+    width: 100%;
 }
 
 .invisible-button {
-  opacity: 0;
-  height: 0;
+    opacity: 0;
+    height: 0;
+}
+
+.create-meal-button {
+    margin-left: 13%;
+    margin-top: 3%;
+}
+
+.big-button {
+    padding: 1% 2.1%;
 }

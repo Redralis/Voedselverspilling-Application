@@ -23,7 +23,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult BeschikbareMaaltijden()
+    public IActionResult AvailableMealBoxes()
     {
         IEnumerable<MealBox> list = _mealBoxRepository.GetAvailableMealBoxes();
         return View(list);
