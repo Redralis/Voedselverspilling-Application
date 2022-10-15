@@ -34,7 +34,7 @@ footer {
 .btn-brand-color:hover {
     background-color: #298282 !important;
     color: white;
-}
+}   
 
 /* End of general styling */
 
@@ -113,3 +113,15 @@ footer {
 }
 
 /* End of available meals styling */
+
+/* Start of edit meals styling */
+
+.form-group {
+    margin-top: 10px;
+}
+
+.form-group label {
+    margin-bottom: 0.5%;
+}
+
+/* End of edit meals styling*/

@@ -8,26 +8,76 @@
 }
 
 <div class="container">
-    <div class="row">
-        <div class="text-center" xmlns="http://www.w3.org/1999/html">
-            <h1>@ViewData["Title"]</h1>
+    <div class="text-center" xmlns="http://www.w3.org/1999/html">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+
+    <form>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxName">Naam</label>
+                    <input class="form-control" id="MealBoxName" placeholder="Naam van de maaltijdbox...">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxCity">Stad</label>
+                    <select class="form-control" id="MealBoxCity">
+                        <option>Breda</option>
+                        <option>Tilburg</option>
+                        <option>'s-Hertogenbosch</option>
+                        <option>Roosendaal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxPickUpTime">Ophaaldatum- en tijd</label>
+                    <input type="datetime-local" class="form-control" id="MealBoxPickUpTime">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxPickUpBy">Uiterste Ophaaldatum- en tijd</label>
+                    <input type="datetime-local" class="form-control" id="MealBoxPickUpBy">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxPrice">Prijs</label>
+                    <input type="number" step="0.01" class="form-control" id="MealBoxPrice">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxType">Type maaltijdbox</label>
+                    <select class="form-control" id="MealBoxType">
+                        <option>Brood</option>
+                        <option>Drank</option>
+                        <option>Dessert</option>
+                        <option>Warme Maaltijd</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label for="MealBoxIsEighteen">Leeftijdsgrens</label>
+                    <select class="form-control" id="MealBoxIsEighteen">
+                        <option>16+</option>
+                        <option>18+</option>
+                    </select>
+                </div>
+            </div>
+
+
         </div>
-    </div>
-    <div class="row">
-        <form>
-            <div class="form-group">
-                <label for="MealBoxName">Naam</label>
-                <input class="form-control" id="MealBoxName" placeholder="Naam van de maaltijdbox...">
-            </div>
-            <div class="form-group">
-                <label for="MealBoxCity">Stad</label>
-                <select class="form-control" id="MealBoxCity">
-                    <option>Breda</option>
-                    <option>Tilburg</option>
-                    <option>'s-Hertogenbosch</option>
-                    <option>Roosendaal</option>
-                </select>
-            </div>
-        </form>
-    </div>
+
+        <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
+            <button type="button"  onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'" class="btn btn-secondary">Annuleren</button>
+            <button type="button" class="btn btn-primary">Aanpassen</button>
+        </div>
+
+    </form>
+
 </div>
