@@ -2,10 +2,11 @@
 @using Domain
 @using Microsoft.EntityFrameworkCore
 @using Persistence
-@model IEnumerable<Domain.MealBox>
+@model dynamic
 
 @{
     ViewData["Title"] = "Beschikbare maaltijden";
+    List<MealBox> mealBoxes = Model.mealBoxes;
 }
 
 <div class="container">
@@ -22,14 +23,16 @@
     </div>
 
     <div class="row">
-        @foreach (var item in Model.Select((value, i) => new { i, value }))
+        @foreach (var item in mealBoxes.Select((value, i) => new { i, value }))
         {
             var mealBox = item.value;
             string modalId = "#exampleModal" + item.i;
             string modalId2 = "exampleModal" + item.i;
+            Random random = new Random();
+            string photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count)].product.Photo;
 
             <div class="card col-md-5">
-                <img class="card-img-top" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP" alt="@mealBox.Name">
+                <img class="card-img-top" src=@photo alt="@mealBox.Name">
                 <div class="card-body">
                     <h5 class="card-title">@mealBox.Name</h5>
                     <p class="card-text price-text">€ @mealBox.Price</p>
@@ -67,7 +70,10 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <img class="card-img-top" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg?ezimgfmt=rs:287x287/rscb1/ngcb1/notWebP">
+                                    <img class="card-img-details" src=@photo alt="@mealBox.Name">
+                                    <p class="card-text pick-up-time-card">
+                                        Ophalen: @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)
+                                    </p>
                                 </div>
                                 <div class="col-6">
                                     <div class="row">
@@ -88,10 +94,11 @@
                                     <p>@mealBox.City</p>
                                     <p>@mealBox.MealType</p>
                                     <p>Voorbeeld inhoud:</p>
+                                    @foreach (var product in mealBox.MealBox_Product)
+                                    {
+                                        @product.product.Name<br/>
+                                    }
                                 </div>
-                                <p class="card-text pick-up-time-card">
-                                    Ophalen op @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)
-                                </p>
                             </div>
                         </div>
                         <div class="modal-footer">

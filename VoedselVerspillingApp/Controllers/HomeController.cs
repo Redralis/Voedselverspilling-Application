@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Diagnostics;
+using System.Dynamic;
 using Domain;
 using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,13 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IMealBoxRepository _mealBoxRepository;
+    private readonly IProductRepository _productRepository;
 
-    public HomeController(ILogger<HomeController> logger, IMealBoxRepository mealBoxRepository)
+    public HomeController(ILogger<HomeController> logger, IMealBoxRepository mealBoxRepository, IProductRepository productRepository)
     {
         _logger = logger;
         _mealBoxRepository = mealBoxRepository;
+        _productRepository = productRepository;
     }
 
     public IActionResult Index()
@@ -25,8 +28,9 @@ public class HomeController : Controller
 
     public IActionResult AvailableMealBoxes()
     {
-        IEnumerable<MealBox> list = _mealBoxRepository.GetAvailableMealBoxes();
-        return View(list);
+        dynamic model = new ExpandoObject();
+        model.mealBoxes = _mealBoxRepository.GetAvailableMealBoxes();
+        return View(model);
     }
     
     public IActionResult EditMealBox()

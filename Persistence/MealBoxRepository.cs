@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Domain.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
 
@@ -37,7 +38,7 @@ public class MealBoxRepository : IMealBoxRepository
 
     public List<MealBox> GetAvailableMealBoxes()
     {
-        return _context.MealBox.ToList().Where(m => m.StudentId == null).ToList();
+        return _context.MealBox.Include(m => m.MealBox_Product).ThenInclude(product => product.product).ToList().Where(m => m.StudentId == null).ToList();
     }
     
 }
