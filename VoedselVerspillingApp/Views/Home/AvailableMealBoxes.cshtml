@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row justify-content-center">
         @foreach (var item in mealBoxes.Select((value, i) => new { i, value }))
         {
             var mealBox = item.value;
@@ -31,7 +31,7 @@
             Random random = new Random();
             string photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count)].product.Photo;
 
-            <div class="card col-md-5">
+            <div class="card col-md-12 col-lg-5">
                 <img class="card-img-top" src=@photo alt="@mealBox.Name">
                 <div class="card-body">
                     <h5 class="card-title">@mealBox.Name</h5>
@@ -119,23 +119,72 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Maaltijdbox Aanmaken</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-6">
-                                <img class="card-img-top modalImage" src="">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxName">Naam</label>
+                                    <input class="form-control" id="MealBoxName" placeholder="Naam van de maaltijdbox...">
+                                </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxCity">Stad</label>
+                                    <select class="form-control" id="MealBoxCity">
+                                        <option>Breda</option>
+                                        <option>Tilburg</option>
+                                        <option>'s-Hertogenbosch</option>
+                                        <option>Roosendaal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxPickUpTime">Ophaaldatum- en tijd</label>
+                                    <input type="datetime-local" class="form-control" id="MealBoxPickUpTime">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxPickUpBy">Uiterste Ophaaldatum- en tijd</label>
+                                    <input type="datetime-local" class="form-control" id="MealBoxPickUpBy">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxPrice">Prijs</label>
+                                    <input type="number" step="0.01" class="form-control" id="MealBoxPrice">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxType">Type maaltijdbox</label>
+                                    <select class="form-control" id="MealBoxType">
+                                        <option>Brood</option>
+                                        <option>Drank</option>
+                                        <option>Dessert</option>
+                                        <option>Warme Maaltijd</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MealBoxIsEighteen">Leeftijdsgrens</label>
+                                    <select class="form-control" id="MealBoxIsEighteen">
+                                        <option>16+</option>
+                                        <option>18+</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-brand-color">Maken</button>
                     </div>
                 </div>
             </div>
