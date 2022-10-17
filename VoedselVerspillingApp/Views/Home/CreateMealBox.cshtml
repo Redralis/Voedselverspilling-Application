@@ -1,11 +1,8 @@
-﻿@using System.Globalization
-@using Domain
-@using Microsoft.EntityFrameworkCore
-@using Persistence
+﻿@using Domain
 @model MealBox
 
 @{
-    ViewData["Title"] = "Maaltijd aanpassen";
+    ViewData["Title"] = "Maaltijd Toevoegen";
 }
 
 <div class="container">
@@ -80,12 +77,12 @@
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
                     <label class="form-label" asp-for="CanteenId" for="Canteen">Kantine</label>
-                    <input class="form-control" id="Canteen" readonly="readonly" asp-for="CanteenId">
+                    <input class="form-control" id="Canteen" value="1" readonly="readonly" asp-for="CanteenId">
                 </div>
             </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
                 <button type="button" onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'" class="btn btn-secondary">Terug</button>
-                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal">Aanpassen</button>
+                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal">Toevoegen</button>
             </div>
         </div>
 

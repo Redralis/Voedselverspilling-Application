@@ -1,7 +1,5 @@
 ﻿@using System.Globalization
 @using Domain
-@using Microsoft.EntityFrameworkCore
-@using Persistence
 @model dynamic
 
 @{
@@ -13,7 +11,8 @@
 
     <div class="row">
         <div class="col-4 text-center">
-            <button type="button" class="btn btn-brand-color create-meal-button" data-bs-toggle="modal" data-bs-target="#CreateMealModal">
+            <button type="button" class="btn btn-brand-color create-meal-button" 
+                    onclick="location.href='@Url.Action("CreateMealBox", "Home")'">
                 Maaltijdbox aanmaken
             </button>
         </div>
@@ -26,10 +25,18 @@
         @foreach (var item in mealBoxes.Select((value, i) => new { i, value }))
         {
             var mealBox = item.value;
-            string modalId = "#exampleModal" + item.i;
-            string modalId2 = "exampleModal" + item.i;
-            Random random = new Random();
-            string photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count)].product.Photo;
+            var modalId = "#exampleModal" + item.i;
+            var modalId2 = "exampleModal" + item.i;
+            var random = new Random();
+            var photo = "";
+            try
+            {
+                photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count)].product.Photo;
+            }
+            catch (Exception e)
+            {
+                photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1";
+            }
 
             <div class="card col-md-12 col-lg-5">
                 <img class="card-img-top" src=@photo alt="@mealBox.Name">
@@ -114,83 +121,5 @@
                 </div>
             </div>
         }
-
-        <!-- Modal for creating a MealBox -->
-        <div class="modal fade" id="CreateMealModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Maaltijdbox Aanmaken</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxName">Naam</label>
-                                    <input class="form-control" id="MealBoxName" placeholder="Naam van de maaltijdbox...">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxCity">Stad</label>
-                                    <select class="form-control" id="MealBoxCity">
-                                        <option>Breda</option>
-                                        <option>Tilburg</option>
-                                        <option>'s-Hertogenbosch</option>
-                                        <option>Roosendaal</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxPickUpTime">Ophaaldatum- en tijd</label>
-                                    <input type="datetime-local" class="form-control" id="MealBoxPickUpTime">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxPickUpBy">Uiterste Ophaaldatum- en tijd</label>
-                                    <input type="datetime-local" class="form-control" id="MealBoxPickUpBy">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxPrice">Prijs</label>
-                                    <input type="number" step="0.01" class="form-control" id="MealBoxPrice">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxType">Type maaltijdbox</label>
-                                    <select class="form-control" id="MealBoxType">
-                                        <option>Brood</option>
-                                        <option>Drank</option>
-                                        <option>Dessert</option>
-                                        <option>Warme Maaltijd</option>
-                                        <option>Alcohol</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label for="MealBoxIsEighteen">Leeftijdsgrens</label>
-                                    <select class="form-control" id="MealBoxIsEighteen">
-                                        <option>16+</option>
-                                        <option>18+</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-brand-color">Maken</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

@@ -46,6 +46,19 @@ public class HomeController : Controller
         return View();
     }
     
+    [HttpGet]
+    public IActionResult CreateMealBox()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult CreateMealBox(MealBox mealBox)
+    {
+        _mealBoxRepository.CreateMealBox(mealBox);
+        return View();
+    }
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
