@@ -33,11 +33,19 @@ public class HomeController : Controller
         return View(model);
     }
     
-    public IActionResult EditMealBox()
+    [HttpGet]
+    public IActionResult EditMealBox(int id)
     {
-        return View();
+        return View(_mealBoxRepository.GetMealBox(id));
     }
 
+    [HttpPost]
+    public IActionResult EditMealBox(MealBox mealBox)
+    {
+        _mealBoxRepository.EditMealBox(mealBox);
+        return View();
+    }
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

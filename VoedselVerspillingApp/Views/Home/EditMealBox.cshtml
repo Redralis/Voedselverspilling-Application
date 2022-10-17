@@ -2,6 +2,7 @@
 @using Domain
 @using Microsoft.EntityFrameworkCore
 @using Persistence
+@model MealBox
 
 @{
     ViewData["Title"] = "Maaltijd aanpassen";
@@ -12,18 +13,21 @@
         <h1>@ViewData["Title"]</h1>
     </div>
 
-    <form>
+    <form asp-action="EditMealBox" method="post" class="m-2">
         <div class="row">
+            <div asp-validation-summary="All"></div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxName">Naam</label>
-                    <input class="form-control" id="MealBoxName" placeholder="Naam van de maaltijdbox...">
+                    <label asp-for="Name" class="form-label">Your name:</label>
+                    <input asp-for="Name" class="form-control"/>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxCity">Stad</label>
-                    <select class="form-control" id="MealBoxCity">
+                    <label asp-for="City" class="form-label">
+                        Stad:
+                    </label>
+                    <select asp-for="City" class="form-control">
                         <option>Breda</option>
                         <option>Tilburg</option>
                         <option>'s-Hertogenbosch</option>
@@ -33,26 +37,28 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxPickUpTime">Ophaaldatum- en tijd</label>
-                    <input type="datetime-local" class="form-control" id="MealBoxPickUpTime">
+                    <label for="MealBoxPickUpTime" class="form-label" asp-for="PickUpTime">Ophaaldatum- en tijd</label>
+                    <input type="datetime-local" class="form-control" asp-for="PickUpTime" id="MealBoxPickUpTime">
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxPickUpBy">Uiterste Ophaaldatum- en tijd</label>
-                    <input type="datetime-local" class="form-control" id="MealBoxPickUpBy">
+                    <label for="MealBoxPickUpBy" class="form-label" asp-for="PickUpBy">Uiterste Ophaaldatum- en tijd</label>
+                    <input type="datetime-local" class="form-control" asp-for="PickUpBy" id="MealBoxPickUpBy">
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxPrice">Prijs</label>
-                    <input type="number" step="0.01" class="form-control" id="MealBoxPrice">
+                    <label class="form-label" asp-for="Price" for="MealBoxPrice">Prijs</label>
+                    <input class="form-control" id="MealBoxPrice" asp-for="Price">
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxType">Type maaltijdbox</label>
-                    <select class="form-control" id="MealBoxType">
+                    <label asp-for="MealType" class="form-label">
+                        Type maaltijd:
+                    </label>
+                    <select asp-for="MealType" class="form-control">
                         <option>Brood</option>
                         <option>Drank</option>
                         <option>Dessert</option>
@@ -62,21 +68,47 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="MealBoxIsEighteen">Leeftijdsgrens</label>
-                    <select class="form-control" id="MealBoxIsEighteen">
-                        <option>16+</option>
-                        <option>18+</option>
+                    <label asp-for="IsEighteen" class="form-label">
+                        Leeftijdsgrens:
+                    </label>
+                    <select asp-for="IsEighteen" class="form-control">
+                        <option value="false">16+</option>
+                        <option value="true">18+</option>
                     </select>
                 </div>
             </div>
-            
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label class="form-label" asp-for="CanteenId" for="Canteen">Kantine</label>
+                    <input class="form-control" id="Canteen" readonly="readonly" asp-for="CanteenId">
+                </div>
+            </div>
+            <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
+                <button type="button" onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'" class="btn btn-secondary">Terug</button>
+                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal">Aanpassen</button>
+            </div>
         </div>
 
-        <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
-            <button type="button"  onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'" class="btn btn-secondary">Annuleren</button>
-            <button type="button" class="btn btn-brand-color">Aanpassen</button>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Gegevens opslaan?</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Wilt u al uw veranderingen opslaan?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">Annuleren</button>
+                        <button type="submit" class="btn btn-brand-color">Opslaan</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </form>
-
 </div>

@@ -24,9 +24,9 @@ public class MealBox
     
     public int? StudentId { get; set; }
 
-    public ICollection<MealBox_Product> MealBox_Product { get; set; }
+    public ICollection<MealBox_Product>? MealBox_Product { get; set; }
 
-    public Canteen Canteen { get; set; }
+    public Canteen? Canteen { get; set; }
     
     public int CanteenId { get; set; }
     
