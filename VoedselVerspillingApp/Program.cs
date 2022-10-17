@@ -4,12 +4,19 @@ using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
+DotNetEnv.Env.Load();
+var connection = builder.Configuration.GetConnectionString("CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("Connection");
+
+Console.WriteLine(connection + " <- connectionstring");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Injecting database context and repositories
-builder.Services.AddDbContext<ApplicationDbContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    if (connection != null) options.UseSqlServer(connection);
+});
 
 builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();

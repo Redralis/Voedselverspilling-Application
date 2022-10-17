@@ -78,3 +78,5 @@ D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\
 D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp\bin\Debug\net6.0\Domain.pdb
 D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp\bin\Debug\net6.0\Domain.Services.pdb
 D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp\obj\Debug\net6.0\VoedselVerspillingApp.csproj.CopyComplete
+D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp\bin\Debug\net6.0\DotNetEnv.dll
+D:\Avans\Jaar-2\Server-Side-Web-Development\Projecten\AvansProject\AvansProject\VoedselVerspillingApp\bin\Debug\net6.0\Sprache.dll

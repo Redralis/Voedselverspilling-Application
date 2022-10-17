@@ -15,10 +15,7 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(
-            "data source=LAPTOP-HM5F12SM;initial catalog=VoedselVerspillingDb;trusted_connection=true;TrustServerCertificate=True");
     }
-
 
     public DbSet<Student> Student { get; set; }
 
@@ -29,7 +26,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Employee> Employee { get; set; }
 
     public DbSet<Canteen> Canteen { get; set; }
-    
+
     public DbSet<MealBox_Product> MealBoxProduct { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -214,7 +211,7 @@ public class ApplicationDbContext : DbContext
             .HasOne(p => p.product)
             .WithMany(p => p.MealBox_Product)
             .HasForeignKey(p => p.ProductId);
-        
+
         modelBuilder.Entity<MealBox_Product>()
             .HasOne(p => p.mealBox)
             .WithMany(p => p.MealBox_Product)
@@ -278,6 +275,5 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 14, MealBoxId = 6, ProductId = 6
                 });
-       
     }
 }
