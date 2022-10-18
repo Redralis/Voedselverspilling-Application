@@ -1,21 +1,31 @@
 using Domain.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-DotNetEnv.Env.Load();
-var connection = builder.Configuration.GetConnectionString("CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("Connection");
-
-Console.WriteLine(connection + " <- connectionstring");
+var databaseConnection = builder.Configuration.GetConnectionString("CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("Connection");
+var identityDatabaseConnection = builder.Configuration.GetConnectionString("IDENTITY_CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("IdentityConnection");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Injecting identity database context
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+{
+    if (identityDatabaseConnection != null) options.UseSqlServer(identityDatabaseConnection);
+});
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+
 // Injecting database context and repositories
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    if (connection != null) options.UseSqlServer(connection);
+    if (databaseConnection != null) options.UseSqlServer(databaseConnection);
 });
 
 builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
@@ -36,6 +46,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAuthentication();
 
 app.UseRouting();
 
