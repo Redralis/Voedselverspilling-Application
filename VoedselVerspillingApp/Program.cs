@@ -12,14 +12,14 @@ var identityDatabaseConnection = builder.Configuration.GetConnectionString("IDEN
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppIdentityDbContext>();
+
 // Injecting identity database context
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 {
-    if (identityDatabaseConnection != null) options.UseSqlServer(identityDatabaseConnection);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("IDENTITY_CONNECTION_STRING"));
 });
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppIdentityDbContext>();
 
 
 // Injecting database context and repositories
