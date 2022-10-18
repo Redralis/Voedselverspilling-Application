@@ -1,17 +1,16 @@
 ﻿@using System.Globalization
 @using Domain
-@model dynamic
+@model List<MealBox>
 
 @{
     ViewData["Title"] = "Beschikbare maaltijden";
-    List<MealBox> mealBoxes = Model.mealBoxes;
 }
 
 <div class="container">
 
     <div class="row">
         <div class="col-4 text-center">
-            <button type="button" class="btn btn-brand-color create-meal-button" 
+            <button type="button" class="btn btn-brand-color create-meal-button"
                     onclick="location.href='@Url.Action("CreateMealBox", "Home")'">
                 Maaltijdbox aanmaken
             </button>
@@ -22,7 +21,7 @@
     </div>
 
     <div class="row justify-content-center">
-        @foreach (var item in mealBoxes.Select((value, i) => new { i, value }))
+        @foreach (var item in Model.Select((value, i) => new { i, value }))
         {
             var mealBox = item.value;
             var modalId = "#exampleModal" + item.i;
@@ -114,12 +113,13 @@
                             <button type="button" class="btn btn-brand-color">Reserveren</button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-brand-color" onclick="location.href='@Url.Action("EditMealBox", "Home", new { id = mealBox.Id })'">Aanpassen</button>
-                            <button type="button" class="btn btn-danger">Verwijderen</button>
+                            <button type="button" class="btn btn-brand-color" onclick="location.href='@Url.Action("EditMealBox", "Home", new { id = mealBox.Id })'">Aanpassen/Verwijderen</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            
         }
     </div>
 </div>

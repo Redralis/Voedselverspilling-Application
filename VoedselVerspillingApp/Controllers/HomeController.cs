@@ -26,26 +26,12 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpGet]
     public IActionResult AvailableMealBoxes()
     {
-        dynamic model = new ExpandoObject();
-        model.mealBoxes = _mealBoxRepository.GetAvailableMealBoxes();
-        return View(model);
-    }
-    
-    [HttpGet]
-    public IActionResult EditMealBox(int id)
-    {
-        return View(_mealBoxRepository.GetMealBox(id));
+        return View(_mealBoxRepository.GetAvailableMealBoxes());
     }
 
-    [HttpPost]
-    public IActionResult EditMealBox(MealBox mealBox)
-    {
-        _mealBoxRepository.EditMealBox(mealBox);
-        return View();
-    }
-    
     [HttpGet]
     public IActionResult CreateMealBox()
     {
@@ -56,12 +42,31 @@ public class HomeController : Controller
     public IActionResult CreateMealBox(MealBox mealBox)
     {
         _mealBoxRepository.CreateMealBox(mealBox);
-        return View();
+        return RedirectToAction("AvailableMealBoxes");
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    
+    [HttpGet]
+    public IActionResult EditMealBox(int id)
+    {
+        return View(_mealBoxRepository.GetMealBox(id));
+    }
+
+    [HttpPost]
+    public IActionResult EditMealBox(MealBox mealBox, string s)
+    {
+        if (s.Equals("edit"))
+        {
+            _mealBoxRepository.EditMealBox(mealBox);
+        } else if (s.Equals("delete"))
+        {
+            _mealBoxRepository.DeleteMealBox(mealBox);
+        }
+        return RedirectToAction("AvailableMealBoxes");
     }
 }

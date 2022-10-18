@@ -121,12 +121,14 @@ namespace Persistence.Migrations
                 name: "MealBoxProduct",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     MealBoxId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MealBoxProduct", x => new { x.MealBoxId, x.ProductId });
+                    table.PrimaryKey("PK_MealBoxProduct", x => x.Id);
                     table.ForeignKey(
                         name: "FK_MealBoxProduct_MealBox_MealBoxId",
                         column: x => x.MealBoxId,
@@ -147,7 +149,8 @@ namespace Persistence.Migrations
                 values: new object[,]
                 {
                     { 1, "Lovensdijkstraat 61", "Breda", true },
-                    { 2, "Lovensdijkstraat 63", "Breda", true }
+                    { 2, "Lovensdijkstraat 63", "Breda", true },
+                    { 3, "Professor Cobbenhagenlaan 13", "Tilburg", true }
                 });
 
             migrationBuilder.InsertData(
@@ -155,10 +158,18 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "IsAlcoholic", "Name", "Photo" },
                 values: new object[,]
                 {
-                    { 1, false, "Hot dog", "Picture of a hot dog" },
-                    { 2, true, "Beer", "Picture of a beer glass" },
-                    { 3, false, "Sandwich", "Picture of a sandwich" },
-                    { 4, false, "Water", "Picture of a bottle of water" }
+                    { 1, false, "Wit brood", "https://images.pexels.com/photos/2942327/pexels-photo-2942327.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 2, false, "Bruin brood", "https://images.pexels.com/photos/8599720/pexels-photo-8599720.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 3, false, "Kippenpoten", "https://images.pexels.com/photos/3926125/pexels-photo-3926125.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 4, false, "Taart", "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 5, false, "Cola", "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 6, false, "Limonade", "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 7, true, "Bier", "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 8, true, "Vodka", "https://images.pexels.com/photos/1170599/pexels-photo-1170599.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 9, false, "IJs", "https://images.pexels.com/photos/1294943/pexels-photo-1294943.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 10, false, "Macarons", "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 11, false, "Popcorn", "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 12, false, "Chips", "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" }
                 });
 
             migrationBuilder.InsertData(
@@ -184,23 +195,33 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "CanteenId", "City", "IsEighteen", "MealType", "Name", "PickUpBy", "PickUpTime", "Price", "StudentId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Breda", false, "Box", "Gezonde maaltijd box", new DateTime(2022, 11, 6, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 22.50m, 1 },
-                    { 2, 2, "Breda", true, "Box", "Zaterdagmiddag", new DateTime(2022, 11, 7, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 5.25m, null },
-                    { 3, 2, "Breda", false, "Box", "Panini box", new DateTime(2022, 11, 6, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 15.50m, null },
-                    { 4, 1, "Breda", true, "Box", "18+'ers box", new DateTime(2022, 11, 6, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 30.00m, null }
+                    { 1, 1, "Breda", false, "Brood box", "Brood assortiment", new DateTime(2022, 11, 12, 15, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 11, 15, 0, 0, 0, DateTimeKind.Unspecified), 22.50m, null },
+                    { 2, 2, "Breda", false, "Warme maaltijd box", "Warme maaltijd", new DateTime(2022, 11, 7, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 5.25m, null },
+                    { 3, 2, "Breda", false, "Drank box", "Drank arrangement", new DateTime(2022, 11, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 15.50m, null },
+                    { 4, 1, "Breda", true, "Alcohol box", "Alcohol arrangement", new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified), 30.00m, null },
+                    { 5, 1, "Breda", false, "Dessert box", "Dessert mix", new DateTime(2022, 11, 23, 14, 20, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 22, 14, 20, 0, 0, DateTimeKind.Unspecified), 17.50m, 1 },
+                    { 6, 3, "Tilburg", false, "Warme maaltijd", "Snacks", new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified), 7.50m, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "MealBoxProduct",
-                columns: new[] { "MealBoxId", "ProductId" },
+                columns: new[] { "Id", "MealBoxId", "ProductId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 1, 4 },
-                    { 2, 2 },
-                    { 3, 2 },
-                    { 3, 3 },
-                    { 4, 1 }
+                    { 1, 1, 1 },
+                    { 2, 1, 2 },
+                    { 3, 2, 3 },
+                    { 4, 2, 5 },
+                    { 5, 2, 4 },
+                    { 6, 3, 5 },
+                    { 7, 3, 6 },
+                    { 8, 4, 7 },
+                    { 9, 4, 8 },
+                    { 10, 5, 9 },
+                    { 11, 5, 10 },
+                    { 12, 6, 11 },
+                    { 13, 6, 12 },
+                    { 14, 6, 6 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -217,6 +238,11 @@ namespace Persistence.Migrations
                 name: "IX_MealBox_StudentId",
                 table: "MealBox",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MealBoxProduct_MealBoxId",
+                table: "MealBoxProduct",
+                column: "MealBoxId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MealBoxProduct_ProductId",
