@@ -16,7 +16,7 @@ public class AppIdentityDbContext : IdentityDbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer("data source=LAPTOP-HM5F12SM;initial catalog=VoedselVerspillingIdentityDb;trusted_connection=true;TrustServerCertificate=True");
+        
     }
 
     
