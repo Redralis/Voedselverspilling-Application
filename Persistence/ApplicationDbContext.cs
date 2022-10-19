@@ -15,8 +15,6 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(
-            "Server=tcp:lucasdekleijndb.database.windows.net,1433;Initial Catalog=lucasdekleijndb;Persist Security Info=False;User ID=l.dekleijn2;Password=Groentesoep1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
     }
 
     public DbSet<Student> Student { get; set; }
