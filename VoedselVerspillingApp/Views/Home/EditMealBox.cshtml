@@ -79,8 +79,12 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label class="form-label" asp-for="CanteenId" for="Canteen">Kantine</label>
-                    <input class="form-control" id="Canteen" readonly="readonly" asp-for="CanteenId">
+                    <input class="form-control" id="Canteen" type="hidden" readonly="readonly" asp-for="CanteenId">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input class="form-control" id="Student" readonly="readonly" type="hidden" asp-for="StudentId">
                 </div>
             </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
@@ -105,7 +109,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">Annuleren</button>
-                        <button type="submit" class="btn btn-brand-color" asp-route-s="edit" >Opslaan</button>
+                        <button type="submit" class="btn btn-brand-color" asp-route-s="edit">Opslaan</button>
                     </div>
                 </div>
             </div>

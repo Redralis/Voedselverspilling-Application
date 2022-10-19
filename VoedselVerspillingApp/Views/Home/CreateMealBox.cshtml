@@ -1,8 +1,12 @@
 ﻿@using Domain
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Text.RegularExpressions
 @model MealBox
 
 @{
     ViewData["Title"] = "Maaltijd Toevoegen";
+    string date = DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm");
+    Console.WriteLine(date);
 }
 
 <div class="container">
@@ -35,7 +39,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="MealBoxPickUpTime" class="form-label" asp-for="PickUpTime">Ophaaldatum- en tijd</label>
-                    <input type="datetime-local" class="form-control" asp-for="PickUpTime" id="MealBoxPickUpTime">
+                    <input type="datetime-local" class="form-control" asp-for="PickUpTime" id="MealBoxPickUpTime" min=@date>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">

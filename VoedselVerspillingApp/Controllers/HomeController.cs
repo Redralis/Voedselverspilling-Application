@@ -56,20 +56,28 @@ public class HomeController : Controller
     }
     
     [HttpGet]
+    [Authorize(Roles = "Employee")]
     public IActionResult EditMealBox(int id)
     {
         return View(_mealBoxRepository.GetMealBox(id));
     }
 
     [HttpPost]
+    [Authorize(Roles = "Employee")]
     public IActionResult EditMealBox(MealBox mealBox, string s)
     {
         if (s.Equals("edit"))
         {
-            _mealBoxRepository.EditMealBox(mealBox);
+            if (mealBox.StudentId == null)
+            {
+                _mealBoxRepository.EditMealBox(mealBox);
+            }
         } else if (s.Equals("delete"))
         {
-            _mealBoxRepository.DeleteMealBox(mealBox);
+            if (mealBox.StudentId == null)
+            {
+                _mealBoxRepository.DeleteMealBox(mealBox);
+            }
         }
         return RedirectToAction("AvailableMealBoxes");
     }
