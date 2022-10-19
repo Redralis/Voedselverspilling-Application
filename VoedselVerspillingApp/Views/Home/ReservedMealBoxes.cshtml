@@ -1,0 +1,116 @@
+﻿@using System.Globalization
+@using Domain
+@model List<MealBox>
+
+@{
+    ViewData["Title"] = "Beschikbare maaltijden";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-6" xmlns="http://www.w3.org/1999/html">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        @foreach (var item in Model.Select((value, i) => new { i, value }))
+        {
+            var mealBox = item.value;
+            var modalId = "#exampleModal" + item.i;
+            var modalId2 = "exampleModal" + item.i;
+            var random = new Random();
+            var photo = "";
+            try
+            {
+                photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count)].product.Photo;
+            }
+            catch (Exception e)
+            {
+                photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1";
+            }
+
+            <div class="card col-md-12 col-lg-5">
+                <img class="card-img-top" src=@photo alt="@mealBox.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@mealBox.Name</h5>
+                    <p class="card-text price-text">€ @mealBox.Price</p>
+                    @if (!mealBox.IsEighteen)
+                    {
+                        <p class="card-text">16+ maaltijdbox</p>
+                    }
+                    else
+                    {
+                        <p class="card-text">18+ maaltijdbox</p>
+                    }
+                    <p class="card-text">
+                        @mealBox.City <br/>
+                        <!-- Button that triggers the modal -->
+                        <button type="button" class="btn btn-primary stretched-link invisible-button shadow-none" data-bs-toggle="modal" data-bs-target=@modalId>
+                            Details
+                        </button>
+                    </p>
+                    <p class="card-text pickup-text">
+                        <small class="muted-text">Ophalen op @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)</small>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal for MealBox details -->
+            <div class="modal fade" id=@modalId2 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@mealBox.Name</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img class="card-img-details" src=@photo alt="@mealBox.Name">
+                                    <p class="card-text pick-up-time-card">
+                                        Ophalen: @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="price-text col-9">
+                                            € @mealBox.Price
+                                        </div>
+                                        <div class="price-text col-3">
+                                            @if (!mealBox.IsEighteen)
+                                            {
+                                                <p class="card-text">16+</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="card-text">18+</p>
+                                            }
+                                        </div>
+                                    </div>
+                                    <p>Stad: @mealBox.City</p>
+                                    <p>Type: @mealBox.MealType</p>
+                                    <p>Voorbeeld inhoud:</p>
+                                    <ul class="list-group list-group-flush products-in-list">
+                                        @foreach (var product in mealBox.MealBox_Product)
+                                        {
+                                            <li class="list-group-item">@product.product.Name</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-brand-color">Reservatie annuleren</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        }
+    </div>
+</div>

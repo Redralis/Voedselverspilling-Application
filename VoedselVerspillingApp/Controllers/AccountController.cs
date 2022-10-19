@@ -58,7 +58,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+    public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
     {
         if (ModelState.IsValid)
         {
@@ -71,8 +71,10 @@ public class AccountController : Controller
                 {
                     return Redirect(returnUrl);
                 }
-
-                return RedirectToAction("Index", "Home");
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             ModelState.AddModelError("", "Email of Wachtwoord incorrect");
         }

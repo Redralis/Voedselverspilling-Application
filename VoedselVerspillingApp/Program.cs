@@ -18,7 +18,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 // Injecting identity database context
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("IDENTITY_CONNECTION_STRING"));
+    if (identityDatabaseConnection != null) options.UseSqlServer(identityDatabaseConnection);
 });
 
 

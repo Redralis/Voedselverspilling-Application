@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using System.Runtime.CompilerServices;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
