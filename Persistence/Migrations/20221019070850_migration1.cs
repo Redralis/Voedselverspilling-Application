@@ -169,7 +169,9 @@ namespace Persistence.Migrations
                     { 9, false, "IJs", "https://images.pexels.com/photos/1294943/pexels-photo-1294943.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 10, false, "Macarons", "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 11, false, "Popcorn", "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
-                    { 12, false, "Chips", "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" }
+                    { 12, false, "Chips", "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 13, false, "Blauw Kristal", "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*" },
+                    { 14, false, "Normaal Kristal", "https://americanaddictioncenters.org/wp-content/uploads/2015/10/Methamphetamine-also-known-as-85084955.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -200,7 +202,8 @@ namespace Persistence.Migrations
                     { 3, 2, "Breda", false, "Drank box", "Drank arrangement", new DateTime(2022, 11, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 15.50m, null },
                     { 4, 1, "Breda", true, "Alcohol box", "Alcohol arrangement", new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified), 30.00m, null },
                     { 5, 1, "Breda", false, "Dessert box", "Dessert mix", new DateTime(2022, 11, 23, 14, 20, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 22, 14, 20, 0, 0, DateTimeKind.Unspecified), 17.50m, 1 },
-                    { 6, 3, "Tilburg", false, "Warme maaltijd", "Snacks", new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified), 7.50m, null }
+                    { 6, 3, "Tilburg", false, "Warme maaltijd", "Snacks", new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified), 7.50m, null },
+                    { 7, 1, "Breda", true, "Warme maaltijd", "Jesse Pinkman Meth Deluxe", new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 100.00m, null }
                 });
 
             migrationBuilder.InsertData(
@@ -221,7 +224,9 @@ namespace Persistence.Migrations
                     { 11, 5, 10 },
                     { 12, 6, 11 },
                     { 13, 6, 12 },
-                    { 14, 6, 6 }
+                    { 14, 6, 6 },
+                    { 15, 7, 13 },
+                    { 16, 7, 14 }
                 });
 
             migrationBuilder.CreateIndex(

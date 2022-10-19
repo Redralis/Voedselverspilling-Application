@@ -12,7 +12,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221018080721_migration1")]
+    [Migration("20221019070850_migration1")]
     partial class migration1
     {
         /// <inheritdoc />
@@ -239,6 +239,18 @@ namespace Persistence.Migrations
                             PickUpBy = new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             Price = 7.50m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CanteenId = 1,
+                            City = "Breda",
+                            IsEighteen = true,
+                            MealType = "Warme maaltijd",
+                            Name = "Jesse Pinkman Meth Deluxe",
+                            PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpTime = new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 100.00m
                         });
                 });
 
@@ -348,6 +360,18 @@ namespace Persistence.Migrations
                             Id = 14,
                             MealBoxId = 6,
                             ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MealBoxId = 7,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MealBoxId = 7,
+                            ProductId = 14
                         });
                 });
 
@@ -458,6 +482,20 @@ namespace Persistence.Migrations
                             IsAlcoholic = false,
                             Name = "Chips",
                             Photo = "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IsAlcoholic = false,
+                            Name = "Blauw Kristal",
+                            Photo = "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IsAlcoholic = false,
+                            Name = "Normaal Kristal",
+                            Photo = "https://americanaddictioncenters.org/wp-content/uploads/2015/10/Methamphetamine-also-known-as-85084955.jpg"
                         });
                 });
 

@@ -15,6 +15,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
+        options.UseSqlServer(
+            "Server=tcp:lucasdekleijndb.database.windows.net,1433;Initial Catalog=lucasdekleijndb;Persist Security Info=False;User ID=l.dekleijn2;Password=Groentesoep1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
     }
 
     public DbSet<Student> Student { get; set; }
@@ -129,6 +131,18 @@ public class ApplicationDbContext : DbContext
                     Id = 12, Name = "Chips", IsAlcoholic = false,
                     Photo =
                         "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                },
+                new Product
+                {
+                    Id = 13, Name = "Blauw Kristal", IsAlcoholic = false,
+                    Photo =
+                        "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*"
+                },
+                new Product
+                {
+                    Id = 14, Name = "Normaal Kristal", IsAlcoholic = false,
+                    Photo =
+                        "https://americanaddictioncenters.org/wp-content/uploads/2015/10/Methamphetamine-also-known-as-85084955.jpg"
                 });
 
         modelBuilder.Entity<Canteen>()
@@ -204,6 +218,12 @@ public class ApplicationDbContext : DbContext
                     Id = 6, Name = "Snacks", City = "Tilburg",
                     PickUpTime = box6Time, PickUpBy = box6Time.AddDays(1), IsEighteen = false, Price = 7.50m,
                     MealType = "Warme maaltijd", CanteenId = 3
+                },
+                new MealBox
+                {
+                    Id = 7, Name = "Jesse Pinkman Meth Deluxe", City = "Breda",
+                    PickUpTime = box3Time, PickUpBy = box4Time.AddDays(1), IsEighteen = true, Price = 100.00m,
+                    MealType = "Warme maaltijd", CanteenId = 1
                 });
 
         // Giving MealBoxes products
@@ -274,6 +294,14 @@ public class ApplicationDbContext : DbContext
                 new
                 {
                     Id = 14, MealBoxId = 6, ProductId = 6
+                },
+                new
+                {
+                    Id = 15, MealBoxId = 7, ProductId = 13
+                },
+                new
+                {
+                    Id = 16, MealBoxId = 7, ProductId = 14
                 });
     }
 }
