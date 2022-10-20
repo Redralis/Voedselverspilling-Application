@@ -24,15 +24,12 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label asp-for="City" class="form-label">
-                        Stad:
-                    </label>
-                    <select asp-for="City" class="form-control">
-                        <option>Breda</option>
-                        <option>Tilburg</option>
-                        <option>'s-Hertogenbosch</option>
-                        <option>Roosendaal</option>
-                    </select>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="City" for="MealBoxCity">Stad</label>
+                            <input class="form-control" value=@ViewBag.City id="MealBoxCity" readonly asp-for="City">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
@@ -81,7 +78,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <input class="form-control" id="Canteen" value="1" type="hidden" asp-for="CanteenId">
+                    <input class="form-control" id="Canteen" value=@ViewBag.CanteenId type="hidden" asp-for="CanteenId">
                 </div>
             </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">

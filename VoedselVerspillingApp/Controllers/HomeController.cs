@@ -68,6 +68,9 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CreateMealBox()
     {
+        Employee e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
+        ViewBag.CanteenId = e.CanteenId;
+        ViewBag.City = e.Canteen.City;
         return View();
     }
 

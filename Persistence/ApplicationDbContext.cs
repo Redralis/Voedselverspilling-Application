@@ -168,7 +168,7 @@ public class ApplicationDbContext : DbContext
                 },
                 new Employee
                 {
-                    Id = 2, Name = "Hans Gerard", Email = "hansgerard@email.com", EmployeeNr = "2193726", CanteenId = 2
+                    Id = 2, Name = "Hans Gerard", Email = "hansgerard@email.com", EmployeeNr = "2193726", CanteenId = 3
                 });
 
         // Making MealBoxes

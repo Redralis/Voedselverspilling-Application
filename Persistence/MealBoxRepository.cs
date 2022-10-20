@@ -56,6 +56,7 @@ public class MealBoxRepository : IMealBoxRepository
     {
         var mealBox = GetMealBox(mealBoxId);
         var student = _studentRepository.GetStudent(email);
+        if (mealBox!.StudentId != null) return "Maaltijdbox is al gereserveerd!";
         if (mealBox.IsEighteen)
         {
             if (Convert.ToDateTime(student!.DateOfBirth) > DateTime.Now.AddYears(-18))
