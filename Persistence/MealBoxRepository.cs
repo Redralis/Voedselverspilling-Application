@@ -25,7 +25,8 @@ public class MealBoxRepository : IMealBoxRepository
 
     public MealBox? GetMealBox(int id)
     {
-        return _context.MealBox.Find(id);
+        return _context.MealBox.Include(m => m.MealBox_Product).ThenInclude(product => product.product)
+            .First(m => m.Id == id);
     }
 
     public void EditMealBox(MealBox mealBox)
@@ -82,5 +83,15 @@ public class MealBoxRepository : IMealBoxRepository
         _context.MealBox.Update(mealBox);
         _context.SaveChanges();
         return "Reservatie geannuleerd!";
+    }
+
+    public void RemoveProductsFromMealBox(int mealBoxId)
+    {
+        var list = _context.MealBoxProduct.Where(m => m.MealBoxId == mealBoxId);
+        foreach (var p in list)
+        {
+            _context.MealBoxProduct.Remove(p);
+        }
+        _context.SaveChanges();
     }
 }

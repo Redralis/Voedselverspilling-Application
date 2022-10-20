@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using System.Text.RegularExpressions
 @using Azure.Core
-@model MealBox
+@model VoedselVerspillingApp.ViewModels.MealBoxViewModel
 
 @{
     ViewData["Title"] = "Maaltijd Toevoegen";
@@ -79,9 +79,26 @@
                     <input class="form-control" id="Canteen" value=@ViewBag.CanteenId type="hidden" asp-for="CanteenId">
                 </div>
             </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @{
+                        
+                        foreach (var p in Model.Products)
+                        {
+                            <input asp-for=@p.IsChecked 
+                                   type="checkbox" 
+                                   value=@p.Id
+                                   id=@p.Id 
+                                   name="ProductIds" 
+                                   checked=@p.IsChecked> 
+                            @p.Name
+                        }
+                    }
+                </div>
+            </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
                 <button type="button" onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'" class="btn btn-secondary">Terug</button>
-                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal">Toevoegen</button>
+                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal" onclick=getProducts()>Toevoegen</button>
             </div>
         </div>
 
@@ -105,6 +122,5 @@
                 </div>
             </div>
         </div>
-
     </form>
 </div>

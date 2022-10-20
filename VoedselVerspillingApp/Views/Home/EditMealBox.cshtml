@@ -2,7 +2,7 @@
 @using Domain
 @using Microsoft.EntityFrameworkCore
 @using Persistence
-@model MealBox
+@model VoedselVerspillingApp.ViewModels.MealBoxViewModel
 
 @{
     ViewData["Title"] = "Maaltijd aanpassen";
@@ -85,6 +85,22 @@
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
                     <input class="form-control" id="Student" readonly="readonly" type="hidden" asp-for="StudentId">
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @{
+                        foreach (var p in Model.Products)
+                        {
+                            <input asp-for=@p.IsChecked
+                                   type="checkbox"
+                                   value=@p.Id
+                                   id=@p.Id
+                                   name="ProductIds"
+                                   checked=@p.IsChecked>
+                            @p.Name
+                        }
+                    }
                 </div>
             </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">

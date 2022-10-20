@@ -18,4 +18,6 @@ public interface IMealBoxRepository
     
     public string CancelReservationForMealBox(int mealBoxId);
 
+    public void RemoveProductsFromMealBox(int mealBoxId);
+
 }

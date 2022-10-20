@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using Domain;
+using VoedselVerspillingApp.Models;
 
-namespace Domain;
+namespace VoedselVerspillingApp.ViewModels;
 
-public class MealBox
+public class MealBoxViewModel
 {
     public int Id { get; set; }
     
@@ -20,12 +20,12 @@ public class MealBox
     public decimal Price { get; set; }
 
     public string MealType { get; set; } = string.Empty;
-    
-    public Student? ReservedBy { get; set; }
-    
+
     public int? StudentId { get; set; }
 
-    public IEnumerable<MealBox_Product>? MealBox_Product { get; set; }
+    public List<CheckBoxItem>? Products { get; set; }
+    
+    public List<int> ProductIds { get; set; }
 
     public Canteen? Canteen { get; set; }
     
