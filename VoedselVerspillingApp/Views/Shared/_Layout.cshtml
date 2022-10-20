@@ -27,6 +27,12 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="AvailableMealBoxes">Beschikbare Maaltijden</a>
                     </li>
+                    @if (User.IsInRole("Student"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ReservedMealBoxes" asp-route-email=@User.Identity.Name>Gereserveerde Maaltijden</a>
+                        </li>
+                    }
                 </ul>
             </div>
             @if (_signInManager.IsSignedIn(User))

@@ -4,12 +4,35 @@
 
 @{
     ViewData["Title"] = "Beschikbare maaltijden";
+    List<MealBox> mealBoxList = new List<MealBox>();
+    int count = 0;
+    if (User.IsInRole("Employee"))
+    {
+        foreach (var m in Model)
+        {
+            if (m.CanteenId == ViewBag.CanteenId)
+            {
+                mealBoxList.Add(m);
+            }
+        }
+        foreach (var m in Model)
+        {
+            if (m.CanteenId != ViewBag.CanteenId)
+            {
+                mealBoxList.Add(m);
+            }
+        }
+    }
+    else
+    {
+        mealBoxList = Model;
+    }
 }
 
 <div class="container">
 
     <div class="row">
-        <div class="col-4 text-center">
+        <div class="col-3 text-center">
             @{
                 if (User.IsInRole("Employee"))
                 {
@@ -20,19 +43,34 @@
                 }
             }
         </div>
-        <div class="col-6" xmlns="http://www.w3.org/1999/html">
-            <h1>@ViewData["Title"]</h1>
+        <div class="col-6 text-center" xmlns="http://www.w3.org/1999/html">
+            @if (User.IsInRole("Employee"))
+            {
+                <h1>Maaltijdboxes van jouw kantine</h1>
+            }
+            else
+            {
+                <h1>@ViewData["Title"]</h1>
+            }
         </div>
     </div>
 
     <div class="row justify-content-center">
-        @foreach (var item in Model.Select((value, i) => new { i, value }))
+        @foreach (var item in mealBoxList.Select((value, i) => new { i, value }))
         {
             var mealBox = item.value;
             var modalId = "#exampleModal" + item.i;
             var modalId2 = "exampleModal" + item.i;
             var random = new Random();
             var photo = "";
+            if (User.IsInRole("Employee"))
+            {
+                if (mealBox.CanteenId != ViewBag.CanteenId && count < 1)
+                {
+                    <h1 class="text-center" style="margin-top: 20px">Maaltijdboxes van andere kantines</h1>
+                    count++;
+                }
+            }
             try
             {
                 photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count)].product.Photo;
@@ -114,11 +152,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <form method="post">
-                                <button type="submit" class="btn btn-brand-color" asp-route-id='@mealBox.Id' asp-route-email=@User.Identity.Name>Reserveren</button>
-                            </form>
-                        </div>
+                        @if (User.IsInRole("Student"))
+                        {
+                            <div class="modal-footer">
+                                <form method="post">
+                                    <button type="submit" class="btn btn-brand-color" asp-route-id='@mealBox.Id' asp-route-email=@User.Identity.Name>Reserveren</button>
+                                </form>
+                            </div>
+                        }
                         @if (User.IsInRole("Employee"))
                         {
                             <div class="modal-footer">

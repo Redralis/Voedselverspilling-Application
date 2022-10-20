@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Domain.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
 
@@ -18,9 +19,9 @@ public class EmployeeRepository : IEmployeeRepository
         _context.SaveChanges();
     }
 
-    public Employee? GetEmployee(int id)
+    public Employee? GetEmployee(string email)
     {
-        return _context.Employee.Find(id);
+        return _context.Employee.Include(e => e.Canteen).FirstOrDefault(s => s.Email == email);
     }
 
     public void EditEmployee(Employee employee)

@@ -14,13 +14,16 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IMealBoxRepository _mealBoxRepository;
-    private readonly IProductRepository _productRepository;
+    private readonly IStudentRepository _studentRepository;
+    private readonly IEmployeeRepository _employeeRepository;
 
-    public HomeController(ILogger<HomeController> logger, IMealBoxRepository mealBoxRepository, IProductRepository productRepository)
+    public HomeController(ILogger<HomeController> logger, IMealBoxRepository mealBoxRepository, IStudentRepository studentRepository,
+        IEmployeeRepository employeeRepository)
     {
         _logger = logger;
         _mealBoxRepository = mealBoxRepository;
-        _productRepository = productRepository;
+        _studentRepository = studentRepository;
+        _employeeRepository = employeeRepository;
     }
 
     [AllowAnonymous]
@@ -33,6 +36,10 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult AvailableMealBoxes()
     {
+        if (User.IsInRole("Employee"))
+        {
+            ViewBag.CanteenId = _employeeRepository.GetEmployee(User.Identity!.Name!)!.Canteen.Id;
+        }
         return View(_mealBoxRepository.GetAvailableMealBoxes());
     }
     
@@ -41,6 +48,20 @@ public class HomeController : Controller
     {
         string s = _mealBoxRepository.ReserveMealBox(id, email);
         Console.WriteLine(s);
+        return RedirectToAction("AvailableMealBoxes");
+    }
+    
+    [HttpGet]
+    public IActionResult ReservedMealBoxes(string email)
+    {
+        int id = _studentRepository.GetStudent(email)!.Id;
+        return View(_mealBoxRepository.GetReservedMealBoxes(id));
+    }
+    
+    [HttpPost]
+    public IActionResult ReservedMealBoxes(int id)
+    {
+        _mealBoxRepository.CancelReservationForMealBox(id);
         return RedirectToAction("AvailableMealBoxes");
     }
 

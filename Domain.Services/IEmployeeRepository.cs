@@ -4,7 +4,7 @@ public interface IEmployeeRepository
 {
     public void CreateEmployee(Employee? employee);
     
-    public Employee? GetEmployee(int id);
+    public Employee? GetEmployee(string email);
 
     public void EditEmployee(Employee employee);
 

@@ -11,7 +11,11 @@ public interface IMealBoxRepository
     public void DeleteMealBox(MealBox mealBox);
 
     public List<MealBox> GetAvailableMealBoxes();
+    
+    public List<MealBox> GetReservedMealBoxes(int id);
 
     public string ReserveMealBox(int mealBoxId, string email);
+    
+    public string CancelReservationForMealBox(int mealBoxId);
 
 }
