@@ -47,7 +47,6 @@ public class HomeController : Controller
     public IActionResult AvailableMealBoxes(int id, string email)
     {
         string s = _mealBoxRepository.ReserveMealBox(id, email);
-        Console.WriteLine(s);
         return RedirectToAction("AvailableMealBoxes");
     }
     

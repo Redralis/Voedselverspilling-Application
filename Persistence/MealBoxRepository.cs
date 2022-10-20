@@ -63,11 +63,11 @@ public class MealBoxRepository : IMealBoxRepository
             {
                 return "Student is te jong voor deze maaltijdbox!";
             }
-            var box = _context.MealBox.FirstOrDefault(m => m.PickUpTime == mealBox.PickUpTime && m.StudentId == student.Id);
-            if (box != null)
-            {
-                return "Student heeft al een maaltijdbox gereserveerd op deze dag!";
-            }
+        }
+        var box = _context.MealBox.FirstOrDefault(m => m.PickUpTime.Day == mealBox.PickUpTime.Day && m.StudentId == student.Id);
+        if (box != null)
+        {
+            return "Student heeft al een maaltijdbox gereserveerd op deze dag!";
         }
         mealBox!.StudentId = student!.Id;
         _context.MealBox.Update(mealBox);
