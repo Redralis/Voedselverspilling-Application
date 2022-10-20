@@ -1,12 +1,11 @@
 ﻿@using Domain
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using System.Text.RegularExpressions
+@using Azure.Core
 @model MealBox
 
 @{
     ViewData["Title"] = "Maaltijd Toevoegen";
-    string date = DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm");
-    Console.WriteLine(date);
 }
 
 <div class="container">
@@ -39,13 +38,15 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="MealBoxPickUpTime" class="form-label" asp-for="PickUpTime">Ophaaldatum- en tijd</label>
-                    <input type="datetime-local" class="form-control" asp-for="PickUpTime" id="MealBoxPickUpTime" min=@date>
+                    <input type="datetime-local" class="form-control" asp-for="PickUpTime" id="MealBoxPickUpTime"
+                           min=@DateTime.Now.ToString("yyyy-MM-ddTHH:mm") max=@DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm")>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="MealBoxPickUpBy" class="form-label" asp-for="PickUpBy">Uiterste Ophaaldatum- en tijd</label>
-                    <input type="datetime-local" class="form-control" asp-for="PickUpBy" id="MealBoxPickUpBy">
+                    <input type="datetime-local" class="form-control" asp-for="PickUpBy" id="MealBoxPickUpBy"
+                           min=@DateTime.Now.ToString("yyyy-MM-ddTHH:mm") max=@DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm")>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
@@ -80,8 +81,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label class="form-label" asp-for="CanteenId" for="Canteen">Kantine</label>
-                    <input class="form-control" id="Canteen" value="1" readonly="readonly" asp-for="CanteenId">
+                    <input class="form-control" id="Canteen" value="1" type="hidden" asp-for="CanteenId">
                 </div>
             </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">

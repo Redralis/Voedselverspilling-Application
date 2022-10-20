@@ -52,7 +52,7 @@ public class ApplicationDbContext : DbContext
                 },
                 new Student
                 {
-                    Id = 2, Name = "Jaron", DateOfBirth = "2002-01-19", StudentNr = "2194746",
+                    Id = 2, Name = "Jaron", DateOfBirth = "2005-01-19", StudentNr = "2194746",
                     Email = "jaron@email.com", City = "Dordrecht", PhoneNr = "0682731928"
                 });
 

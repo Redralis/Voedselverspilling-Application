@@ -32,15 +32,15 @@
             @if (_signInManager.IsSignedIn(User))
             {
                 <form method="post" asp-action="logout" asp-controller="Account">
-                    <button type="submit" class="nav-link btn btn-link py-0" style="width: auto">
-                        Uitloggen @User.Identity.Name
+                    <button type="submit" class="nav-link btn btn-link py-0 account-button" style="width: auto">
+                        Uitloggen
                     </button>
                 </form>
             }
             else
             {
-                <button class="btn btn-primary" onclick="location.href='@Url.Action("Login", "Account")'">Inloggen</button>
-                <button class="btn btn-primary" onclick="location.href='@Url.Action("Register", "Account")'">Registreren</button>
+                <button class="nav-link btn btn-link py-0 account-button" onclick="location.href='@Url.Action("Login", "Account")'">Inloggen</button>
+                <button class="nav-link btn btn-link py-0 account-button" onclick="location.href='@Url.Action("Register", "Account")'">Registreren</button>
             }
         </div>
     </nav>

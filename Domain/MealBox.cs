@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain;
 
 public class MealBox
 {
     public int Id { get; set; }
-
+    
     public string Name { get; set; } = string.Empty;
-
+    
     public string City { get; set; } = string.Empty;
     
     public DateTime PickUpTime { get; set; }

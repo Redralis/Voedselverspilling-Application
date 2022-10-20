@@ -12,4 +12,6 @@ public interface IMealBoxRepository
 
     public List<MealBox> GetAvailableMealBoxes();
 
+    public string ReserveMealBox(int mealBoxId, string email);
+
 }

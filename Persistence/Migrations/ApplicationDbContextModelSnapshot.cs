@@ -552,7 +552,7 @@ namespace Persistence.Migrations
                         {
                             Id = 2,
                             City = "Dordrecht",
-                            DateOfBirth = "2002-01-19",
+                            DateOfBirth = "2005-01-19",
                             Email = "jaron@email.com",
                             Name = "Jaron",
                             PhoneNr = "0682731928",

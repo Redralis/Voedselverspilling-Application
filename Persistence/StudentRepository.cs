@@ -11,16 +11,16 @@ public class StudentRepository : IStudentRepository
     {
         _context = context;
     }
-    
+
     public void CreateStudent(Student? student)
     {
         if (student != null) _context.Student.Add(student);
         _context.SaveChanges();
     }
 
-    public Student? GetStudent(int id)
+    public Student? GetStudent(string email)
     {
-        return _context.Student.Find(id);
+        return _context.Student.FirstOrDefault(s => s.Email == email);
     }
 
     public void EditStudent(Student student)
@@ -34,5 +34,4 @@ public class StudentRepository : IStudentRepository
         _context.Student.Remove(student);
         _context.SaveChanges();
     }
-    
 }

@@ -35,6 +35,14 @@ public class HomeController : Controller
     {
         return View(_mealBoxRepository.GetAvailableMealBoxes());
     }
+    
+    [HttpPost]
+    public IActionResult AvailableMealBoxes(int id, string email)
+    {
+        string s = _mealBoxRepository.ReserveMealBox(id, email);
+        Console.WriteLine(s);
+        return RedirectToAction("AvailableMealBoxes");
+    }
 
     [HttpGet]
     public IActionResult CreateMealBox()
