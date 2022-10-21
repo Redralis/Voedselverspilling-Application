@@ -70,6 +70,7 @@ nav, footer, .btn-brand-color, .btn-brand-color:visited, .card {
 
 .card img {
     width: 50%;
+    object-fit: cover;
 }
 
 .card-img-details {
