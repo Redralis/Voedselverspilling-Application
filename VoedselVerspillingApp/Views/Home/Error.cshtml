@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Pagina";
+}
+
+<div class="row subtext error-box">
+    <h5>Error!</h5>
+    <p>@TempData["Message"]</p>
+    <div class="col-6">
+        <button type="button" class="btn btn-brand-color btn-lg big-button" onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'">Terug naar beschikbare maaltijden</button>
+    </div>
+</div>

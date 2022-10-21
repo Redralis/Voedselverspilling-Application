@@ -116,3 +116,16 @@ nav, footer, .btn-brand-color, .btn-brand-color:visited, .card {
 }
 
 /* End of edit meals styling*/
+
+/* Start of error page styling */
+
+.error-box {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: #F2C9C9;
+    color: red;
+}
+
+/* End of error page styling */

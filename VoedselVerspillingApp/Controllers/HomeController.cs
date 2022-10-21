@@ -50,7 +50,12 @@ public class HomeController : Controller
     public IActionResult AvailableMealBoxes(int id, string email)
     {
         var s = _mealBoxRepository.ReserveMealBox(id, email);
-        return RedirectToAction("AvailableMealBoxes");
+        TempData["Message"] = s;
+        if (s == "Maaltijdbox gereserveerd!")
+        {
+            return RedirectToAction("AvailableMealBoxes");
+        }
+        return RedirectToAction("Error");
     }
 
     [HttpGet]
