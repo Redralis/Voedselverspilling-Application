@@ -150,7 +150,7 @@ namespace Persistence.Migrations
                 {
                     { 1, "Lovensdijkstraat 61", "Breda", true },
                     { 2, "Lovensdijkstraat 63", "Breda", true },
-                    { 3, "Professor Cobbenhagenlaan 13", "Tilburg", true }
+                    { 3, "Professor Cobbenhagenlaan 13", "Tilburg", false }
                 });
 
             migrationBuilder.InsertData(
@@ -167,7 +167,7 @@ namespace Persistence.Migrations
                     { 7, true, "Bier", "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 8, true, "Vodka", "https://images.pexels.com/photos/1170599/pexels-photo-1170599.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 9, false, "IJs", "https://images.pexels.com/photos/1294943/pexels-photo-1294943.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
-                    { 10, false, "Macarons", "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
+                    { 10, false, "Macarons", "https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 11, false, "Popcorn", "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 12, false, "Chips", "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 13, false, "Blauw Kristal", "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*" },
@@ -180,7 +180,7 @@ namespace Persistence.Migrations
                 values: new object[,]
                 {
                     { 1, "Dordrecht", "2003-01-27", "lucas@email.com", "Lucas", "0692837263", "2191372" },
-                    { 2, "Dordrecht", "2002-01-19", "jaron@email.com", "Jaron", "0682731928", "2194746" }
+                    { 2, "Dordrecht", "2005-01-19", "jaron@email.com", "Jaron", "0682731928", "2194746" }
                 });
 
             migrationBuilder.InsertData(
@@ -189,7 +189,7 @@ namespace Persistence.Migrations
                 values: new object[,]
                 {
                     { 1, 1, "quinn@email.com", "2187362", "Quinn" },
-                    { 2, 2, "hansgerard@email.com", "2193726", "Hans Gerard" }
+                    { 2, 3, "hansgerard@email.com", "2193726", "Hans Gerard" }
                 });
 
             migrationBuilder.InsertData(

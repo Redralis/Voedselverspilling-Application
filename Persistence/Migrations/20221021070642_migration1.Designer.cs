@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221020084422_migration2")]
-    partial class migration2
+    [Migration("20221021070642_migration1")]
+    partial class migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace Persistence.Migrations
                             Id = 3,
                             Address = "Professor Cobbenhagenlaan 13",
                             City = "Tilburg",
-                            ServesWarmMeals = true
+                            ServesWarmMeals = false
                         });
                 });
 
@@ -113,7 +113,7 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CanteenId = 2,
+                            CanteenId = 3,
                             Email = "hansgerard@email.com",
                             EmployeeNr = "2193726",
                             Name = "Hans Gerard"
@@ -467,7 +467,7 @@ namespace Persistence.Migrations
                             Id = 10,
                             IsAlcoholic = false,
                             Name = "Macarons",
-                            Photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                            Photo = "https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                         },
                         new
                         {

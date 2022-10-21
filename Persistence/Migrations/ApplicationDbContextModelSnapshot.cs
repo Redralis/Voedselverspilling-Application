@@ -65,7 +65,7 @@ namespace Persistence.Migrations
                             Id = 3,
                             Address = "Professor Cobbenhagenlaan 13",
                             City = "Tilburg",
-                            ServesWarmMeals = true
+                            ServesWarmMeals = false
                         });
                 });
 
@@ -464,7 +464,7 @@ namespace Persistence.Migrations
                             Id = 10,
                             IsAlcoholic = false,
                             Name = "Macarons",
-                            Photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                            Photo = "https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                         },
                         new
                         {

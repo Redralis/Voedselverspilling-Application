@@ -59,7 +59,10 @@
                         <option>Brood</option>
                         <option>Drank</option>
                         <option>Dessert</option>
-                        <option>Warme Maaltijd</option>
+                        @if (ViewBag.ServesWarmMeals)
+                        {
+                            <option>Warme Maaltijd</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -82,7 +85,6 @@
             <div class="col-md-12 col-sm-12">
                 <div class="form-group">
                     @{
-                        
                         foreach (var p in Model.Products)
                         {
                             <input asp-for=@p.IsChecked 

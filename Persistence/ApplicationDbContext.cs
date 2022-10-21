@@ -117,7 +117,7 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 10, Name = "Macarons", IsAlcoholic = false,
                     Photo =
-                        "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+                        "https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
                 },
                 new Product
                 {
@@ -156,7 +156,7 @@ public class ApplicationDbContext : DbContext
                 },
                 new Canteen
                 {
-                    Id = 3, City = "Tilburg", Address = "Professor Cobbenhagenlaan 13", ServesWarmMeals = true
+                    Id = 3, City = "Tilburg", Address = "Professor Cobbenhagenlaan 13", ServesWarmMeals = false
                 });
 
         // Making employees

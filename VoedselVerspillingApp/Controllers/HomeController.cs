@@ -82,6 +82,7 @@ public class HomeController : Controller
         Employee e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
         ViewBag.CanteenId = e.CanteenId;
         ViewBag.City = e.Canteen.City;
+        ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
         MealBoxViewModel viewModel = new MealBoxViewModel()
         {
             Products = listCheck
