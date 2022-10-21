@@ -38,11 +38,14 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult AvailableMealBoxes()
     {
-        if (User.IsInRole("Employee"))
+        if (User != null)
         {
-            ViewBag.CanteenId = _employeeRepository.GetEmployee(User.Identity!.Name!)!.Canteen.Id;
+            if (User.IsInRole("Employee"))
+            {
+                ViewBag.CanteenId = _employeeRepository.GetEmployee(User.Identity!.Name!)!.Canteen.Id;
+            }
         }
-
+        
         return View(_mealBoxRepository.GetAvailableMealBoxes());
     }
 
