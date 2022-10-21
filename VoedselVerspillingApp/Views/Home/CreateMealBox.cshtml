@@ -1,7 +1,4 @@
-﻿@using Domain
-@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using System.Text.RegularExpressions
-@using Azure.Core
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model VoedselVerspillingApp.ViewModels.MealBoxViewModel
 
 @{
@@ -85,7 +82,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="form-group">
                     @{
-                        foreach (var p in Model.Products)
+                        foreach (var p in Model.Products!)
                         {
                             <input asp-for=@p.IsChecked 
                                    type="checkbox" 
@@ -100,7 +97,7 @@
             </div>
             <div class="text-center form-group" xmlns="http://www.w3.org/1999/html">
                 <button type="button" onclick="location.href='@Url.Action("AvailableMealBoxes", "Home")'" class="btn btn-secondary">Terug</button>
-                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal" onclick=getProducts()>Toevoegen</button>
+                <button type="button" class="btn btn-brand-color" data-bs-toggle="modal" data-bs-target="#confirmationModal">Toevoegen</button>
             </div>
         </div>
 

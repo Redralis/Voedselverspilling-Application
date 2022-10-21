@@ -25,7 +25,7 @@ public class MealBoxViewModel
 
     public List<CheckBoxItem>? Products { get; set; }
     
-    public List<int> ProductIds { get; set; }
+    public List<int> ProductIds { get; set; } = null!;
 
     public Canteen? Canteen { get; set; }
     

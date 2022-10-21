@@ -1,8 +1,4 @@
-﻿@using System.Globalization
-@using Domain
-@using Microsoft.EntityFrameworkCore
-@using Persistence
-@model VoedselVerspillingApp.ViewModels.MealBoxViewModel
+﻿@model VoedselVerspillingApp.ViewModels.MealBoxViewModel
 
 @{
     ViewData["Title"] = "Maaltijd aanpassen";
@@ -62,7 +58,10 @@
                         <option>Brood</option>
                         <option>Drank</option>
                         <option>Dessert</option>
-                        <option>Warme Maaltijd</option>
+                        @if (ViewBag.ServesWarmMeals)
+                        {
+                            <option>Warme Maaltijd</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -90,7 +89,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="form-group">
                     @{
-                        foreach (var p in Model.Products)
+                        foreach (var p in Model.Products!)
                         {
                             <input asp-for=@p.IsChecked
                                    type="checkbox"
@@ -115,7 +114,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Gegevens opslaan?</h5>
+                        <h5 class="modal-title">Gegevens opslaan?</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

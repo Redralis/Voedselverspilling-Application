@@ -1,12 +1,11 @@
 ﻿@using System.Globalization
-@using System.Security.Principal
 @using Domain
 @model List<MealBox>
 
 @{
     ViewData["Title"] = "Beschikbare maaltijden";
-    List<MealBox> mealBoxList = new List<MealBox>();
-    int count = 0;
+    var mealBoxList = new List<MealBox>();
+    var count = 0;
     if (User.IsInRole("Employee"))
     {
         foreach (var m in Model)
@@ -62,7 +61,7 @@
             var modalId = "#exampleModal" + item.i;
             var modalId2 = "exampleModal" + item.i;
             var random = new Random();
-            var photo = "";
+            string photo;
             if (User.IsInRole("Employee"))
             {
                 if (mealBox.CanteenId != ViewBag.CanteenId && count < 1)
@@ -73,9 +72,9 @@
             }
             try
             {
-                photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count())].product.Photo;
+                photo = mealBox.MealBox_Product!.ToList()[random.Next(mealBox.MealBox_Product!.Count())].product.Photo;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1";
             }
@@ -144,7 +143,7 @@
                                     <p>Type: @mealBox.MealType</p>
                                     <p>Voorbeeld inhoud:</p>
                                     <ul class="list-group list-group-flush products-in-list">
-                                        @foreach (var product in mealBox.MealBox_Product)
+                                        @foreach (var product in mealBox.MealBox_Product!)
                                         {
                                             <li class="list-group-item">@product.product.Name</li>
                                         }
@@ -156,7 +155,7 @@
                         {
                             <div class="modal-footer">
                                 <form method="post">
-                                    <button type="submit" class="btn btn-brand-color" asp-route-id='@mealBox.Id' asp-route-email=@User.Identity.Name>Reserveren</button>
+                                    <button type="submit" class="btn btn-brand-color" asp-route-id='@mealBox.Id' asp-route-email=@User.Identity!.Name>Reserveren</button>
                                 </form>
                             </div>
                         }

@@ -25,7 +25,7 @@ public class MealBoxRepository : IMealBoxRepository
 
     public MealBox? GetMealBox(int id)
     {
-        return _context.MealBox.Include(m => m.MealBox_Product).ThenInclude(product => product.product)
+        return _context.MealBox.Include(m => m.MealBox_Product)!.ThenInclude(product => product.product)
             .First(m => m.Id == id);
     }
 

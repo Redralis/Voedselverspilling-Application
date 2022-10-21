@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Diagnostics;
-using System.Dynamic;
+﻿using System.Diagnostics;
 using Domain;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -51,14 +49,14 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult AvailableMealBoxes(int id, string email)
     {
-        string s = _mealBoxRepository.ReserveMealBox(id, email);
+        var s = _mealBoxRepository.ReserveMealBox(id, email);
         return RedirectToAction("AvailableMealBoxes");
     }
 
     [HttpGet]
     public IActionResult ReservedMealBoxes(string email)
     {
-        int id = _studentRepository.GetStudent(email)!.Id;
+        var id = _studentRepository.GetStudent(email)!.Id;
         return View(_mealBoxRepository.GetReservedMealBoxes(id));
     }
 
@@ -72,18 +70,14 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CreateMealBox()
     {
-        List<Product> list = _productRepository.GetProducts();
-        List<CheckBoxItem> listCheck = new List<CheckBoxItem>();
-        foreach (Product p in list)
-        {
-            listCheck.Add(new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false });
-        }
+        var list = _productRepository.GetProducts();
+        var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
         ViewBag.Products = listCheck;
-        Employee e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
+        var e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
         ViewBag.CanteenId = e.CanteenId;
         ViewBag.City = e.Canteen.City;
         ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
-        MealBoxViewModel viewModel = new MealBoxViewModel()
+        var viewModel = new MealBoxViewModel()
         {
             Products = listCheck
         };
@@ -93,11 +87,7 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult CreateMealBox(MealBox mealBox, MealBoxViewModel model)
     {
-        List<MealBox_Product> list = new List<MealBox_Product>();
-        foreach (var id in model.ProductIds)
-        {
-            list.Add(new MealBox_Product() { ProductId = id, MealBoxId = mealBox.Id });
-        }
+        var list = model.ProductIds.Select(id => new MealBox_Product() { ProductId = id, MealBoxId = mealBox.Id }).ToList();
         mealBox.MealBox_Product = list;
         _mealBoxRepository.CreateMealBox(mealBox);
         return RedirectToAction("AvailableMealBoxes");
@@ -115,23 +105,14 @@ public class HomeController : Controller
     {
         var model = new MealBoxViewModel();
         var box = _mealBoxRepository.GetMealBox(id)!;
-        var productIds = new List<int>();
         var list = _productRepository.GetProducts();
-        var listCheck = new List<CheckBoxItem>();
-        foreach (var p in list)
+        var e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
+        ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
+        var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
+        var productIds = box.MealBox_Product!.Select(p => p.ProductId).ToList();
+        foreach (var c in listCheck.Where(c => productIds.Contains(c.Id)))
         {
-            listCheck.Add(new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false });
-        }
-        foreach (var p in box.MealBox_Product!)
-        {
-            productIds.Add(p.ProductId);
-        }
-        foreach (var c in listCheck)
-        {
-            if (productIds.Contains(c.Id))
-            {
-                c.IsChecked = true;
-            }
+            c.IsChecked = true;
         }
         model.Id = box.Id;
         model.Name = box.Name;
@@ -150,25 +131,28 @@ public class HomeController : Controller
     [Authorize(Roles = "Employee")]
     public IActionResult EditMealBox(MealBox mealBox, string s, MealBoxViewModel model)
     {
-        if (s.Equals("edit"))
+        switch (s)
         {
-            if (mealBox.StudentId == null)
+            case "edit":
             {
-                List<MealBox_Product> list = new List<MealBox_Product>();
-                foreach (var id in model.ProductIds)
+                if (mealBox.StudentId == null)
                 {
-                    list.Add(new MealBox_Product { ProductId = id, MealBoxId = mealBox.Id });
+                    var list = model.ProductIds.Select(id => new MealBox_Product { ProductId = id, MealBoxId = mealBox.Id }).ToList();
+                    _mealBoxRepository.RemoveProductsFromMealBox(mealBox.Id);
+                    mealBox.MealBox_Product = list;
+                    _mealBoxRepository.EditMealBox(mealBox);
                 }
-                _mealBoxRepository.RemoveProductsFromMealBox(mealBox.Id);
-                mealBox.MealBox_Product = list;
-                _mealBoxRepository.EditMealBox(mealBox);
+
+                break;
             }
-        }
-        else if (s.Equals("delete"))
-        {
-            if (mealBox.StudentId == null)
+            case "delete":
             {
-                _mealBoxRepository.DeleteMealBox(mealBox);
+                if (mealBox.StudentId == null)
+                {
+                    _mealBoxRepository.DeleteMealBox(mealBox);
+                }
+
+                break;
             }
         }
 

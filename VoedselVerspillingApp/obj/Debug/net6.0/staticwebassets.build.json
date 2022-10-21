@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mHRmxH+qm9md2b4ne6Xbj+Dd6dvqaE/4JU0cb4CgTj8=",
+  "Hash": "mEH3vbHKAm5vRgqOxi5YDARV7v/W031v/n9yVXZvHcw=",
   "Source": "VoedselVerspillingApp",
   "BasePath": "_content/VoedselVerspillingApp",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\VoedselVerspillingApp\\wwwroot\\Logo.png",
+      "SourceId": "VoedselVerspillingApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Avans\\Jaar-2\\Server-Side-Web-Development\\Projecten\\AvansProject\\AvansProject\\VoedselVerspillingApp\\wwwroot\\",
+      "BasePath": "_content/VoedselVerspillingApp",
+      "RelativePath": "Logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Logo.png"
     }
   ]
 }

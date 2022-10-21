@@ -21,12 +21,12 @@
             var modalId = "#exampleModal" + item.i;
             var modalId2 = "exampleModal" + item.i;
             var random = new Random();
-            var photo = "";
+            string photo;
             try
             {
-                photo = mealBox.MealBox_Product.ToList()[random.Next(mealBox.MealBox_Product.Count())].product.Photo;
+                photo = mealBox.MealBox_Product!.ToList()[random.Next(mealBox.MealBox_Product!.Count())].product.Photo;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 photo = "https://images.pexels.com/photos/239578/pexels-photo-239578.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1";
             }
@@ -95,7 +95,7 @@
                                     <p>Type: @mealBox.MealType</p>
                                     <p>Voorbeeld inhoud:</p>
                                     <ul class="list-group list-group-flush products-in-list">
-                                        @foreach (var product in mealBox.MealBox_Product)
+                                        @foreach (var product in mealBox.MealBox_Product!)
                                         {
                                             <li class="list-group-item">@product.product.Name</li>
                                         }
