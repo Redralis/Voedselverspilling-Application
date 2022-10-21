@@ -60,7 +60,7 @@ public class MealBoxRepository : IMealBoxRepository
         if (mealBox!.StudentId != null) return "Maaltijdbox is al gereserveerd!";
         if (mealBox.IsEighteen)
         {
-            if (Convert.ToDateTime(student!.DateOfBirth) > DateTime.Now.AddYears(-18))
+            if (Convert.ToDateTime(student!.DateOfBirth) > mealBox.PickUpTime.AddYears(-18))
             {
                 return "Student is te jong voor deze maaltijdbox!";
             }

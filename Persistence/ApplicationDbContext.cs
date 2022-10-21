@@ -133,15 +133,15 @@ public class ApplicationDbContext : DbContext
                 },
                 new Product
                 {
-                    Id = 13, Name = "Blauw Kristal", IsAlcoholic = false,
+                    Id = 13, Name = "Blauw Kristalsnoep", IsAlcoholic = false,
                     Photo =
                         "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*"
                 },
                 new Product
                 {
-                    Id = 14, Name = "Normaal Kristal", IsAlcoholic = false,
+                    Id = 14, Name = "Normaal Kristalsnoep", IsAlcoholic = false,
                     Photo =
-                        "https://americanaddictioncenters.org/wp-content/uploads/2015/10/Methamphetamine-also-known-as-85084955.jpg"
+                        "https://cdn11.bigcommerce.com/s-1b75a/images/stencil/500w/products/138/3144/DSCN1797__13248.1652210117.JPG?c=2"
                 });
 
         modelBuilder.Entity<Canteen>()
@@ -186,43 +186,43 @@ public class ApplicationDbContext : DbContext
                 {
                     Id = 1, Name = "Brood assortiment", City = "Breda",
                     PickUpTime = box1Time, PickUpBy = box1Time.AddDays(1), IsEighteen = false, Price = 22.50m,
-                    MealType = "Brood box", CanteenId = 1
+                    MealType = "Brood box", CanteenId = 1, IsWarmMeal = false
                 },
                 new MealBox
                 {
                     Id = 2, Name = "Warme maaltijd", City = "Breda",
                     PickUpTime = box2Time, PickUpBy = box2Time.AddDays(2), IsEighteen = false, Price = 5.25m,
-                    MealType = "Warme maaltijd box", CanteenId = 2
+                    MealType = "Warm eten", CanteenId = 2, IsWarmMeal = true
                 },
                 new MealBox
                 {
                     Id = 3, Name = "Drank arrangement", City = "Breda",
                     PickUpTime = box3Time, PickUpBy = box3Time.AddDays(1), IsEighteen = false, Price = 15.50m,
-                    MealType = "Drank box", CanteenId = 2
+                    MealType = "Drank box", CanteenId = 2, IsWarmMeal = false
                 },
                 new MealBox
                 {
                     Id = 4, Name = "Alcohol arrangement", City = "Breda",
                     PickUpTime = box4Time, PickUpBy = box4Time.AddDays(1), IsEighteen = true, Price = 30.00m,
-                    MealType = "Alcohol box", CanteenId = 1
+                    MealType = "Alcohol box", CanteenId = 1, IsWarmMeal = false
                 },
                 new MealBox
                 {
                     Id = 5, Name = "Dessert mix", City = "Breda",
                     PickUpTime = box5Time, PickUpBy = box5Time.AddDays(1), IsEighteen = false, Price = 17.50m,
-                    MealType = "Dessert box", StudentId = 1, CanteenId = 1
+                    MealType = "Dessert box", StudentId = 1, CanteenId = 1, IsWarmMeal = false
                 },
                 new MealBox
                 {
                     Id = 6, Name = "Snacks", City = "Tilburg",
                     PickUpTime = box6Time, PickUpBy = box6Time.AddDays(1), IsEighteen = false, Price = 7.50m,
-                    MealType = "Warme maaltijd", CanteenId = 3
+                    MealType = "Warm eten", CanteenId = 3, IsWarmMeal = true
                 },
                 new MealBox
                 {
-                    Id = 7, Name = "Jesse Pinkman Meth Deluxe", City = "Breda",
+                    Id = 7, Name = "Jesse Pinkman Meth Deluxe Snoep", City = "Breda",
                     PickUpTime = box3Time, PickUpBy = box4Time.AddDays(1), IsEighteen = true, Price = 100.00m,
-                    MealType = "Warme maaltijd", CanteenId = 1
+                    MealType = "Snoep", CanteenId = 1, IsWarmMeal = false
                 });
 
         // Giving MealBoxes products

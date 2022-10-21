@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221021082736_migration2")]
+    partial class migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -253,8 +256,8 @@ namespace Persistence.Migrations
                             City = "Breda",
                             IsEighteen = true,
                             IsWarmMeal = false,
-                            MealType = "Snoep",
-                            Name = "Jesse Pinkman Meth Deluxe Snoep",
+                            MealType = "Warme maaltijd",
+                            Name = "Jesse Pinkman Meth Deluxe",
                             PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 100.00m
@@ -494,15 +497,15 @@ namespace Persistence.Migrations
                         {
                             Id = 13,
                             IsAlcoholic = false,
-                            Name = "Blauw Kristalsnoep",
+                            Name = "Blauw Kristal",
                             Photo = "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*"
                         },
                         new
                         {
                             Id = 14,
                             IsAlcoholic = false,
-                            Name = "Normaal Kristalsnoep",
-                            Photo = "https://cdn11.bigcommerce.com/s-1b75a/images/stencil/500w/products/138/3144/DSCN1797__13248.1652210117.JPG?c=2"
+                            Name = "Normaal Kristal",
+                            Photo = "https://americanaddictioncenters.org/wp-content/uploads/2015/10/Methamphetamine-also-known-as-85084955.jpg"
                         });
                 });
 

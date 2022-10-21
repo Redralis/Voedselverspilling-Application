@@ -15,6 +15,8 @@ public class MealBox
     public bool IsEighteen { get; set; }
     
     public decimal Price { get; set; }
+    
+    public bool IsWarmMeal { get; set; }
 
     public string MealType { get; set; } = string.Empty;
     

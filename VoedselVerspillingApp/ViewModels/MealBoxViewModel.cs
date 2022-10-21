@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using Domain;
 using VoedselVerspillingApp.Models;
 
 namespace VoedselVerspillingApp.ViewModels;
@@ -18,6 +19,8 @@ public class MealBoxViewModel
     public bool IsEighteen { get; set; }
     
     public decimal Price { get; set; }
+    
+    public bool IsWarmMeal { get; set; }
 
     public string MealType { get; set; } = string.Empty;
 

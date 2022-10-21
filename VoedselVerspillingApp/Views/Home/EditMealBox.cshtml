@@ -58,32 +58,44 @@
                         <option>Brood</option>
                         <option>Drank</option>
                         <option>Dessert</option>
-                        @if (ViewBag.ServesWarmMeals)
-                        {
-                            <option>Warme Maaltijd</option>
-                        }
+                        <option>Warm eten</option>
+                        <option>Snoep</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label asp-for="IsEighteen" class="form-label">
-                        Leeftijdsgrens:
+                    <label asp-for="IsWarmMeal" class="form-label">
+                        Is warme maaltijd:
                     </label>
-                    <select asp-for="IsEighteen" class="form-control">
-                        <option value="false">16+</option>
-                        <option value="true">18+</option>
-                    </select>
+                    @if (ViewBag.ServesWarmMeals)
+                    {
+                        <select asp-for="IsWarmMeal" class="form-control">
+                            <option value="false">Geen warme maaltijd</option>
+                            <option value="true">Warme maaltijd</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <select asp-for="IsWarmMeal" disabled class="form-control">
+                            <option value="false">Geen warme maaltijd</option>
+                        </select>
+                    }
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-3 col-sm-12">
                 <div class="form-group">
                     <input class="form-control" id="Canteen" type="hidden" readonly="readonly" asp-for="CanteenId">
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-3 col-sm-12">
                 <div class="form-group">
                     <input class="form-control" id="Student" readonly="readonly" type="hidden" asp-for="StudentId">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input class="form-control" id="IsEighteen" value="false" type="hidden" asp-for="IsEighteen">
                 </div>
             </div>
             <div class="col-md-12 col-sm-12">

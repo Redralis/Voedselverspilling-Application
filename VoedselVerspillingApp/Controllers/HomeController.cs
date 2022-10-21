@@ -87,7 +87,15 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult CreateMealBox(MealBox mealBox, MealBoxViewModel model)
     {
-        var list = model.ProductIds.Select(id => new MealBox_Product() { ProductId = id, MealBoxId = mealBox.Id }).ToList();
+        var list = model.ProductIds.Select(id => new MealBox_Product() { ProductId = id, MealBoxId = mealBox.Id })
+            .ToList();
+        foreach (var id in model.ProductIds)
+        {
+            if (_productRepository.GetProduct(id)!.IsAlcoholic)
+            {
+                mealBox.IsEighteen = true;
+            }
+        }
         mealBox.MealBox_Product = list;
         _mealBoxRepository.CreateMealBox(mealBox);
         return RedirectToAction("AvailableMealBoxes");
@@ -114,6 +122,7 @@ public class HomeController : Controller
         {
             c.IsChecked = true;
         }
+
         model.Id = box.Id;
         model.Name = box.Name;
         model.PickUpTime = box.PickUpTime;
@@ -124,6 +133,7 @@ public class HomeController : Controller
         model.StudentId = box.StudentId;
         model.Products = listCheck;
         model.CanteenId = box.CanteenId;
+        model.IsWarmMeal = box.IsWarmMeal;
         return View(model);
     }
 
@@ -137,9 +147,19 @@ public class HomeController : Controller
             {
                 if (mealBox.StudentId == null)
                 {
-                    var list = model.ProductIds.Select(id => new MealBox_Product { ProductId = id, MealBoxId = mealBox.Id }).ToList();
+                    var list = model.ProductIds
+                        .Select(id => new MealBox_Product { ProductId = id, MealBoxId = mealBox.Id }).ToList();
                     _mealBoxRepository.RemoveProductsFromMealBox(mealBox.Id);
                     mealBox.MealBox_Product = list;
+                    var alcoholicProductsCount = 0;
+                    foreach (var id in model.ProductIds)
+                    {
+                        if (_productRepository.GetProduct(id)!.IsAlcoholic)
+                        {
+                            alcoholicProductsCount++;
+                        }
+                    }
+                    mealBox.IsEighteen = alcoholicProductsCount > 0;
                     _mealBoxRepository.EditMealBox(mealBox);
                 }
 
