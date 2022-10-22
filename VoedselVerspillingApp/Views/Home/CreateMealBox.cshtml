@@ -31,14 +31,16 @@
                 <div class="form-group">
                     <label for="MealBoxPickUpTime" class="form-label" asp-for="PickUpTime">Ophaaldatum- en tijd</label>
                     <input type="datetime-local" class="form-control" asp-for="PickUpTime" id="MealBoxPickUpTime"
-                           min=@DateTime.Now.ToString("yyyy-MM-ddTHH:mm") max=@DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm")>
+                           min=@DateTime.Now.ToString("yyyy-MM-ddTHH:mm") max=@DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm")
+                           value="@DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm")">
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="MealBoxPickUpBy" class="form-label" asp-for="PickUpBy">Uiterste Ophaaldatum- en tijd</label>
                     <input type="datetime-local" class="form-control" asp-for="PickUpBy" id="MealBoxPickUpBy"
-                           min=@DateTime.Now.ToString("yyyy-MM-ddTHH:mm") max=@DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm")>
+                           min=@DateTime.Now.ToString("yyyy-MM-ddTHH:mm") max=@DateTime.Now.AddDays(2).ToString("yyyy-MM-ddTHH:mm")
+                           value="@DateTime.Now.AddMinutes(10).ToString("yyyy-MM-ddTHH:mm")">
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
