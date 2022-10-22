@@ -3,6 +3,7 @@ using Domain;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VoedselVerspillingApp.Models;
 using VoedselVerspillingApp.ViewModels;
 
@@ -50,6 +51,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Student")]
     public IActionResult AvailableMealBoxes(int id, string email)
     {
         var s = _mealBoxRepository.ReserveMealBox(id, email);
@@ -62,6 +64,7 @@ public class HomeController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Student")]
     public IActionResult ReservedMealBoxes(string email)
     {
         var id = _studentRepository.GetStudentByEmail(email)!.Id;
@@ -69,6 +72,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Student")]
     public IActionResult ReservedMealBoxes(int id)
     {
         _mealBoxRepository.CancelReservationForMealBox(id);
@@ -95,16 +99,12 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult CreateMealBox(MealBox mealBox, MealBoxViewModel model)
     {
-        var list = model.ProductIds.Select(id => new MealBox_Product() { ProductId = id, MealBoxId = mealBox.Id })
-            .ToList();
-        foreach (var id in model.ProductIds)
+        var list = model.ProductIds.Select(id => _productRepository.GetProduct(id)!).ToList();
+        foreach (var id in model.ProductIds.Where(id => _productRepository.GetProduct(id)!.IsAlcoholic))
         {
-            if (_productRepository.GetProduct(id)!.IsAlcoholic)
-            {
-                mealBox.IsEighteen = true;
-            }
+            mealBox.IsEighteen = true;
         }
-        mealBox.MealBox_Product = list;
+        mealBox.Products = list;
         _mealBoxRepository.CreateMealBox(mealBox);
         return RedirectToAction("AvailableMealBoxes");
     }
@@ -125,7 +125,11 @@ public class HomeController : Controller
         var e = _employeeRepository.GetEmployeeByEmail(User.Identity!.Name!)!;
         ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
         var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
-        var productIds = box.MealBox_Product!.Select(p => p.ProductId).ToList();
+        var productIds = new List<int>();
+        foreach (Product p in box.Products)
+        {
+            productIds.Add(p.Id);
+        }
         foreach (var c in listCheck.Where(c => productIds.Contains(c.Id)))
         {
             c.IsChecked = true;
@@ -155,20 +159,24 @@ public class HomeController : Controller
             {
                 if (mealBox.StudentId == null)
                 {
-                    var list = model.ProductIds
-                        .Select(id => new MealBox_Product { ProductId = id, MealBoxId = mealBox.Id }).ToList();
-                    _mealBoxRepository.RemoveProductsFromMealBox(mealBox.Id);
-                    mealBox.MealBox_Product = list;
-                    var alcoholicProductsCount = 0;
-                    foreach (var id in model.ProductIds)
+                    var alcoholicProductsCount = model.ProductIds.Count(id => _productRepository.GetProduct(id)!.IsAlcoholic);
+                    
+                    var box = new MealBox()
                     {
-                        if (_productRepository.GetProduct(id)!.IsAlcoholic)
-                        {
-                            alcoholicProductsCount++;
-                        }
-                    }
-                    mealBox.IsEighteen = alcoholicProductsCount > 0;
-                    _mealBoxRepository.EditMealBox(mealBox);
+                        Name = model.Name,
+                        City = model.City,
+                        PickUpTime = model.PickUpTime,
+                        PickUpBy = model.PickUpBy,
+                        IsEighteen = alcoholicProductsCount > 0,
+                        Price = model.Price,
+                        MealType = model.MealType,
+                        CanteenId = model.CanteenId,
+                        Products = model.ProductIds.Select(id => _productRepository.GetProduct(id)!).ToList()
+                    };
+                    
+                    _mealBoxRepository.DeleteMealBox(_mealBoxRepository.GetMealBox(model.Id)!);
+                    _mealBoxRepository.CreateMealBox(box);
+                    return RedirectToAction("AvailableMealBoxes");
                 }
 
                 break;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221022141318_migration7")]
+    partial class migration7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,8 +218,8 @@ namespace Persistence.Migrations
                             IsWarmMeal = false,
                             MealType = "Alcohol box",
                             Name = "Alcohol arrangement",
-                            PickUpBy = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
-                            PickUpTime = new DateTime(2022, 11, 20, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpTime = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             Price = 30.00m
                         },
                         new
@@ -255,7 +258,7 @@ namespace Persistence.Migrations
                             IsWarmMeal = false,
                             MealType = "Snoep",
                             Name = "Jesse Pinkman Meth Deluxe Snoep",
-                            PickUpBy = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 100.00m
                         });

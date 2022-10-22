@@ -24,7 +24,7 @@
             string photo;
             try
             {
-                photo = mealBox.MealBox_Product!.ToList()[random.Next(mealBox.MealBox_Product!.Count())].product.Photo;
+                photo = mealBox.Products!.ToList()[random.Next(mealBox.Products!.Count())].Photo;
             }
             catch (Exception)
             {
@@ -95,9 +95,9 @@
                                     <p>Type: @mealBox.MealType</p>
                                     <p>Voorbeeld inhoud:</p>
                                     <ul class="list-group list-group-flush products-in-list">
-                                        @foreach (var product in mealBox.MealBox_Product!)
+                                        @foreach (var product in mealBox.Products!)
                                         {
-                                            <li class="list-group-item">@product.product.Name</li>
+                                            <li class="list-group-item">@product.Name</li>
                                         }
                                     </ul>
                                 </div>

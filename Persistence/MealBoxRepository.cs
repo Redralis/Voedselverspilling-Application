@@ -23,10 +23,9 @@ public class MealBoxRepository : IMealBoxRepository
         _context.SaveChanges();
     }
 
-    public MealBox? GetMealBox(int id)
+    public MealBox GetMealBox(int id)
     {
-        return _context.MealBox.Include(m => m.MealBox_Product)!.ThenInclude(product => product.product)
-            .First(m => m.Id == id);
+        return _context.MealBox.Include(m => m.Products).ToList().First(m => m.Id == id);
     }
 
     public void EditMealBox(MealBox mealBox)
@@ -43,18 +42,18 @@ public class MealBoxRepository : IMealBoxRepository
 
     public List<MealBox> GetMealBoxes()
     {
-        return _context.MealBox.Include(m => m.MealBox_Product)!.ThenInclude(product => product.product).ToList();
+        return _context.MealBox.Include(m => m.Products).ToList();
     }
 
     public List<MealBox> GetAvailableMealBoxes()
     {
-        return _context.MealBox.Include(m => m.MealBox_Product).ThenInclude(product => product.product).ToList()
+        return _context.MealBox.Include(m => m.Products).ToList()
             .Where(m => m.StudentId == null).OrderBy(m => m.PickUpTime).ToList();
     }
 
     public List<MealBox> GetReservedMealBoxes(int id)
     {
-        return _context.MealBox.Include(m => m.MealBox_Product).ThenInclude(product => product.product).ToList()
+        return _context.MealBox.Include(m => m.Products).ToList()
             .Where(m => m.StudentId == id).OrderBy(m => m.PickUpTime).ToList();
     }
 
@@ -70,17 +69,20 @@ public class MealBoxRepository : IMealBoxRepository
                 return "Student is te jong voor deze maaltijdbox!";
             }
         }
-        var box = _context.MealBox.FirstOrDefault(m => m.PickUpTime.Day == mealBox.PickUpTime.Day && m.StudentId == student.Id);
+
+        var box = _context.MealBox.FirstOrDefault(m =>
+            m.PickUpTime.Day == mealBox.PickUpTime.Day && m.StudentId == student.Id);
         if (box != null)
         {
             return "Student heeft al een maaltijdbox gereserveerd op deze dag!";
         }
+
         mealBox!.StudentId = student!.Id;
         _context.MealBox.Update(mealBox);
         _context.SaveChanges();
         return "Maaltijdbox gereserveerd!";
     }
-    
+
     public string CancelReservationForMealBox(int mealBoxId)
     {
         var mealBox = GetMealBox(mealBoxId);
@@ -90,13 +92,8 @@ public class MealBoxRepository : IMealBoxRepository
         return "Reservatie geannuleerd!";
     }
 
-    public void RemoveProductsFromMealBox(int mealBoxId)
+    public void RemoveProductsFromMealBox(MealBox mealBox)
     {
-        var list = _context.MealBoxProduct.Where(m => m.MealBoxId == mealBoxId);
-        foreach (var p in list)
-        {
-            _context.MealBoxProduct.Remove(p);
-        }
-        _context.SaveChanges();
+        
     }
 }

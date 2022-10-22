@@ -72,7 +72,7 @@
             }
             try
             {
-                photo = mealBox.MealBox_Product!.ToList()[random.Next(mealBox.MealBox_Product!.Count())].product.Photo;
+                photo = mealBox.Products!.ToList()[random.Next(mealBox.Products!.Count())].Photo;
             }
             catch (Exception)
             {
@@ -122,6 +122,9 @@
                                     <p class="card-text pick-up-time-card">
                                         Ophalen: @mealBox.PickUpTime.ToString(CultureInfo.CurrentCulture)
                                     </p>
+                                    <div class="card-text pick-up-time-card">
+                                        Warme maaltijd:@if (mealBox.IsWarmMeal){<text> ✔</text>}else{<text> ❌</text>}
+                                    </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="row">
@@ -143,21 +146,23 @@
                                     <p>Type: @mealBox.MealType</p>
                                     <p>Voorbeeld inhoud:</p>
                                     <ul class="list-group list-group-flush products-in-list">
-                                        @foreach (var product in mealBox.MealBox_Product!)
+                                        @foreach (var product in mealBox.Products!)
                                         {
-                                            <li class="list-group-item">@product.product.Name</li>
+                                            <li class="list-group-item">@product.Name</li>
                                         }
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        @if (User.IsInRole("Student"))
-                        {
-                            <div class="modal-footer">
-                                <form method="post">
-                                    <button type="submit" class="btn btn-brand-color" asp-route-id='@mealBox.Id' asp-route-email=@User.Identity!.Name>Reserveren</button>
-                                </form>
-                            </div>
+                        @{
+                            if (!User.IsInRole("Employee"))
+                            {
+                                <div class="modal-footer">
+                                    <form method="post">
+                                        <button type="submit" class="btn btn-brand-color" asp-route-id='@mealBox.Id' asp-route-email=@User.Identity!.Name>Reserveren</button>
+                                    </form>
+                                </div>
+                            }
                         }
                         @if (User.IsInRole("Employee"))
                         {

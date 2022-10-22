@@ -16,6 +16,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
+        options.UseSqlServer(
+            "data source=LAPTOP-HM5F12SM;initial catalog=VoedselVerspillingDb;trusted_connection=true;TrustServerCertificate=True");
     }
 
     public DbSet<Student> Student { get; set; }
@@ -27,8 +29,6 @@ public class ApplicationDbContext : DbContext
     public DbSet<Employee> Employee { get; set; }
 
     public DbSet<Canteen> Canteen { get; set; }
-
-    public DbSet<MealBox_Product> MealBoxProduct { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -176,12 +176,12 @@ public class ApplicationDbContext : DbContext
         DateTime box1Time = new DateTime(2022, 11, 11, 15, 00, 0);
         DateTime box2Time = new DateTime(2022, 11, 5, 13, 30, 0);
         DateTime box3Time = new DateTime(2022, 11, 17, 12, 00, 0);
-        DateTime box4Time = new DateTime(2022, 11, 21, 18, 30, 0);
+        DateTime box4Time = new DateTime(2022, 11, 20, 18, 30, 0);
         DateTime box5Time = new DateTime(2022, 11, 22, 14, 20, 0);
         DateTime box6Time = new DateTime(2022, 11, 26, 16, 15, 0);
 
         modelBuilder.Entity<MealBox>()
-            .HasData(
+            .HasData( 
                 new MealBox
                 {
                     Id = 1, Name = "Brood assortiment", City = "Breda",
@@ -225,82 +225,35 @@ public class ApplicationDbContext : DbContext
                     MealType = "Snoep", CanteenId = 1, IsWarmMeal = false
                 });
 
-        // Giving MealBoxes products
-        modelBuilder.Entity<MealBox_Product>()
-            .HasOne(p => p.product)
-            .WithMany(p => p.MealBox_Product)
-            .HasForeignKey(p => p.ProductId);
-
-        modelBuilder.Entity<MealBox_Product>()
-            .HasOne(p => p.mealBox)
-            .WithMany(p => p.MealBox_Product)
-            .HasForeignKey(p => p.MealBoxId);
-
-        modelBuilder.Entity<MealBox_Product>()
-            .HasData(
-                new
+        modelBuilder.Entity<MealBox>()
+            .HasMany(m => m.Products)
+            .WithMany(p => p.MealBoxes)
+            .UsingEntity<Dictionary<string, object>>(
+                "MealBoxProduct",
+                r => r.HasOne<Product>().WithMany().HasForeignKey("ProductId"),
+                l => l.HasOne<MealBox>().WithMany().HasForeignKey("MealBoxId"),
+                je =>
                 {
-                    Id = 1, MealBoxId = 1, ProductId = 1
-                },
-                new
-                {
-                    Id = 2, MealBoxId = 1, ProductId = 2
-                },
-                new
-                {
-                    Id = 3, MealBoxId = 2, ProductId = 3
-                },
-                new
-                {
-                    Id = 4, MealBoxId = 2, ProductId = 5
-                },
-                new
-                {
-                    Id = 5, MealBoxId = 2, ProductId = 4
-                },
-                new
-                {
-                    Id = 6, MealBoxId = 3, ProductId = 5
-                },
-                new
-                {
-                    Id = 7, MealBoxId = 3, ProductId = 6
-                },
-                new
-                {
-                    Id = 8, MealBoxId = 4, ProductId = 7
-                },
-                new
-                {
-                    Id = 9, MealBoxId = 4, ProductId = 8
-                },
-                new
-                {
-                    Id = 10, MealBoxId = 5, ProductId = 9
-                },
-                new
-                {
-                    Id = 11, MealBoxId = 5, ProductId = 10
-                },
-                new
-                {
-                    Id = 12, MealBoxId = 6, ProductId = 11
-                },
-                new
-                {
-                    Id = 13, MealBoxId = 6, ProductId = 12
-                },
-                new
-                {
-                    Id = 14, MealBoxId = 6, ProductId = 6
-                },
-                new
-                {
-                    Id = 15, MealBoxId = 7, ProductId = 13
-                },
-                new
-                {
-                    Id = 16, MealBoxId = 7, ProductId = 14
+                    je.HasKey("ProductId", "MealBoxId");
+                    je.HasData(
+                        new { MealBoxId = 1, ProductId = 1 },
+                        new { MealBoxId = 1, ProductId = 2 },
+                        new { MealBoxId = 2, ProductId = 3 },
+                        new { MealBoxId = 2, ProductId = 5 },
+                        new { MealBoxId = 2, ProductId = 4 }, 
+                        new { MealBoxId = 3, ProductId = 5 },
+                        new { MealBoxId = 3, ProductId = 6 },
+                        new { MealBoxId = 4, ProductId = 7 },
+                        new { MealBoxId = 4, ProductId = 8 },
+                        new { MealBoxId = 5, ProductId = 9 },
+                        new { MealBoxId = 5, ProductId = 10 },
+                        new { MealBoxId = 6, ProductId = 11 },
+                        new { MealBoxId = 6, ProductId = 12 },
+                        new { MealBoxId = 6, ProductId = 6 },
+                        new { MealBoxId = 7, ProductId = 13 },
+                        new { MealBoxId = 7, ProductId = 14 }
+                        );
                 });
+        
     }
 }
