@@ -42,7 +42,7 @@ public class HomeController : Controller
         {
             if (User.IsInRole("Employee"))
             {
-                ViewBag.CanteenId = _employeeRepository.GetEmployee(User.Identity!.Name!)!.Canteen.Id;
+                ViewBag.CanteenId = _employeeRepository.GetEmployeeByEmail(User.Identity!.Name!)!.Canteen.Id;
             }
         }
         
@@ -64,7 +64,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult ReservedMealBoxes(string email)
     {
-        var id = _studentRepository.GetStudent(email)!.Id;
+        var id = _studentRepository.GetStudentByEmail(email)!.Id;
         return View(_mealBoxRepository.GetReservedMealBoxes(id));
     }
 
@@ -81,7 +81,7 @@ public class HomeController : Controller
         var list = _productRepository.GetProducts();
         var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
         ViewBag.Products = listCheck;
-        var e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
+        var e = _employeeRepository.GetEmployeeByEmail(User.Identity!.Name!)!;
         ViewBag.CanteenId = e.CanteenId;
         ViewBag.City = e.Canteen.City;
         ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
@@ -122,7 +122,7 @@ public class HomeController : Controller
         var model = new MealBoxViewModel();
         var box = _mealBoxRepository.GetMealBox(id)!;
         var list = _productRepository.GetProducts();
-        var e = _employeeRepository.GetEmployee(User.Identity!.Name!)!;
+        var e = _employeeRepository.GetEmployeeByEmail(User.Identity!.Name!)!;
         ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
         var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
         var productIds = box.MealBox_Product!.Select(p => p.ProductId).ToList();

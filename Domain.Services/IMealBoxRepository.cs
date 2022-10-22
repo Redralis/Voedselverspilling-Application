@@ -9,6 +9,8 @@ public interface IMealBoxRepository
     public void EditMealBox(MealBox mealBox);
 
     public void DeleteMealBox(MealBox mealBox);
+    
+    public List<MealBox> GetMealBoxes();
 
     public List<MealBox> GetAvailableMealBoxes();
     

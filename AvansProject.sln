@@ -1,22 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4023F089-93E2-4A51-B8A7-4F3747C717F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{609B52C0-7EE5-4151-B045-C0833AE80AA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{F0A50744-3387-4AE2-A273-5C08BC600519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{F0A50744-3387-4AE2-A273-5C08BC600519}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{AB6E3D56-74F0-4CEC-A3FA-1367DCA429CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoedselVerspillingApp", "VoedselVerspillingApp\VoedselVerspillingApp.csproj", "{0445F907-EB22-4ACF-B475-78C4FAF49287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoedselVerspillingApp", "VoedselVerspillingApp\VoedselVerspillingApp.csproj", "{0445F907-EB22-4ACF-B475-78C4FAF49287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6BE040A9-FF00-41A2-9904-B0BB9DEB9321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{6BE040A9-FF00-41A2-9904-B0BB9DEB9321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Services", "Domain.Services\Domain.Services.csproj", "{C051C857-6C27-4E3F-8B94-574A7BBF2F80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Services", "Domain.Services\Domain.Services.csproj", "{C051C857-6C27-4E3F-8B94-574A7BBF2F80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2F1A348C-0833-4D46-B795-45DA85E796BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTests", "ProjectTests\ProjectTests.csproj", "{66259A6B-F92A-43E8-BCB2-FB3FD8577900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTests", "ProjectTests\ProjectTests.csproj", "{66259A6B-F92A-43E8-BCB2-FB3FD8577900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoedselVerspillingApi", "VoedselVerspillingApi\VoedselVerspillingApi.csproj", "{3C3DB698-80B5-4CBF-B4CC-1F25BD60CE2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +49,13 @@ Global
 		{66259A6B-F92A-43E8-BCB2-FB3FD8577900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66259A6B-F92A-43E8-BCB2-FB3FD8577900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66259A6B-F92A-43E8-BCB2-FB3FD8577900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3DB698-80B5-4CBF-B4CC-1F25BD60CE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3DB698-80B5-4CBF-B4CC-1F25BD60CE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3DB698-80B5-4CBF-B4CC-1F25BD60CE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3DB698-80B5-4CBF-B4CC-1F25BD60CE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F0A50744-3387-4AE2-A273-5C08BC600519} = {609B52C0-7EE5-4151-B045-C0833AE80AA9}
@@ -51,5 +63,9 @@ Global
 		{6BE040A9-FF00-41A2-9904-B0BB9DEB9321} = {4023F089-93E2-4A51-B8A7-4F3747C717F2}
 		{C051C857-6C27-4E3F-8B94-574A7BBF2F80} = {4023F089-93E2-4A51-B8A7-4F3747C717F2}
 		{66259A6B-F92A-43E8-BCB2-FB3FD8577900} = {2F1A348C-0833-4D46-B795-45DA85E796BB}
+		{3C3DB698-80B5-4CBF-B4CC-1F25BD60CE2C} = {AB6E3D56-74F0-4CEC-A3FA-1367DCA429CE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54C34234-6A64-4C1B-AFE7-B25DFF080A33}
 	EndGlobalSection
 EndGlobal

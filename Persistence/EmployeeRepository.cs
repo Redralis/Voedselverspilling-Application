@@ -19,9 +19,19 @@ public class EmployeeRepository : IEmployeeRepository
         _context.SaveChanges();
     }
 
-    public Employee? GetEmployee(string email)
+    public Employee? GetEmployee(int id)
+    {
+        return _context.Employee.Find(id);
+    }
+
+    public Employee? GetEmployeeByEmail(string email)
     {
         return _context.Employee.Include(e => e.Canteen).FirstOrDefault(s => s.Email == email);
+    }
+
+    public List<Employee> GetEmployees()
+    {
+        return _context.Employee.ToList();
     }
 
     public void EditEmployee(Employee employee)

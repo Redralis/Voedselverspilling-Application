@@ -24,6 +24,11 @@ public class CanteenRepository : ICanteenRepository
         return _context.Canteen.Find(id);
     }
 
+    public List<Canteen> GetCanteens()
+    {
+        return _context.Canteen.ToList();
+    }
+
     public void EditCanteen(Canteen canteen)
     {
         _context.Canteen.Update(canteen);

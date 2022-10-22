@@ -41,6 +41,12 @@ public class MealBoxRepository : IMealBoxRepository
         _context.SaveChanges();
     }
 
+    public List<MealBox> GetMealBoxes()
+    {
+        return _context.MealBox.Include(m => m.MealBox_Product)!.ThenInclude(product => product.product).ToList()
+            .OrderBy(m => m.PickUpTime).ToList();
+    }
+
     public List<MealBox> GetAvailableMealBoxes()
     {
         return _context.MealBox.Include(m => m.MealBox_Product).ThenInclude(product => product.product).ToList()
@@ -56,7 +62,7 @@ public class MealBoxRepository : IMealBoxRepository
     public string ReserveMealBox(int mealBoxId, string email)
     {
         var mealBox = GetMealBox(mealBoxId);
-        var student = _studentRepository.GetStudent(email);
+        var student = _studentRepository.GetStudentByEmail(email);
         if (mealBox!.StudentId != null) return "Maaltijdbox is al gereserveerd!";
         if (mealBox.IsEighteen)
         {

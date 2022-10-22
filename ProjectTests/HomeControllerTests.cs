@@ -69,7 +69,7 @@ public class HomeControllerTests
         var box2Time = new DateTime(2022, 11, 5, 13, 30, 0);
         const string studentEmail = "lucas@email.com";
 
-        studentRepositoryMock.Setup(studentRepo => studentRepo.GetStudent(studentEmail)).Returns(new Student
+        studentRepositoryMock.Setup(studentRepo => studentRepo.GetStudentByEmail(studentEmail)).Returns(new Student
         {
             Id = 1, Name = "Lucas", DateOfBirth = "2003-01-27", StudentNr = "2191372",
             Email = "lucas@email.com", City = "Dordrecht", PhoneNr = "0692837263"
