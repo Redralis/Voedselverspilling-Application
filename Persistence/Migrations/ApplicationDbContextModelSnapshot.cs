@@ -144,7 +144,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("PickUpBy")
                         .HasColumnType("datetime2");
@@ -161,8 +162,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CanteenId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("MealBox");
 
@@ -565,13 +564,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Student", "ReservedBy")
-                        .WithMany()
-                        .HasForeignKey("StudentId");
-
                     b.Navigation("Canteen");
-
-                    b.Navigation("ReservedBy");
                 });
 
             modelBuilder.Entity("MealBoxProduct", b =>

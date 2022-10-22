@@ -1,5 +1,4 @@
-﻿using Domain;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,25 +45,25 @@ public class AppIdentityDbContext : IdentityDbContext
             {
                 Id = "8e482735-a24d-43543-a6c6-9273d048kdj9",
                 UserName = "lucas@email.com", NormalizedUserName = "LUCAS@EMAIL.COM".ToUpper(),
-                PasswordHash = hasher.HashPassword(null, "AvansVoedselVerspilling")
+                PasswordHash = hasher.HashPassword(null!, "AvansVoedselVerspilling")
             },
             new IdentityUser
             {
                 Id = "8e728335-a24d-49283-a6c6-9827d048opj9",
                 UserName = "jaron@email.com", NormalizedUserName = "JARON@EMAIL.COM".ToUpper(),
-                PasswordHash = hasher.HashPassword(null, "AvansVoedselVerspilling")
+                PasswordHash = hasher.HashPassword(null!, "AvansVoedselVerspilling")
             },
             new IdentityUser
             {
                 Id = "4e401827-a93d-43543-a6c6-9273d048kdj9",
                 UserName = "quinn@email.com", NormalizedUserName = "QUINN@EMAIL.COM".ToUpper(),
-                PasswordHash = hasher.HashPassword(null, "AvansVoedselVerspilling")
+                PasswordHash = hasher.HashPassword(null!, "AvansVoedselVerspilling")
             },
             new IdentityUser
             {
                 Id = "5e928372-a54d-48373-a6c6-9827p046kdj9",
                 UserName = "hansgerard@email.com", NormalizedUserName = "HANSGERARD@EMAIL.COM".ToUpper(),
-                PasswordHash = hasher.HashPassword(null, "AvansVoedselVerspilling")
+                PasswordHash = hasher.HashPassword(null!, "AvansVoedselVerspilling")
             }
         );
 

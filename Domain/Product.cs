@@ -15,6 +15,6 @@ public class Product
 
     [Required(ErrorMessage = "Er moet een foto URL meegegeven worden.")]
     public string Photo { get; set; } = string.Empty;
-    
-    public ICollection<MealBox> MealBoxes { get; set; }
+
+    public ICollection<MealBox> MealBoxes { get; set; } = null!;
 }

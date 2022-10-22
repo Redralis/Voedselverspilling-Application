@@ -3,8 +3,6 @@ using Domain;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using VoedselVerspillingApp.Models;
 using VoedselVerspillingApp.ViewModels;
 
@@ -13,6 +11,7 @@ namespace VoedselVerspillingApp.Controllers;
 [Authorize]
 public class HomeController : Controller
 {
+    // ReSharper disable once NotAccessedField.Local because logger will and has been used.
     private readonly ILogger<HomeController> _logger;
     private readonly IMealBoxRepository _mealBoxRepository;
     private readonly IStudentRepository _studentRepository;
@@ -40,6 +39,8 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult AvailableMealBoxes()
     {
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract because removing
+        // this code will make tests fail.
         if (User != null)
         {
             if (User.IsInRole("Employee"))
@@ -103,14 +104,13 @@ public class HomeController : Controller
     {
         if (ModelState.IsValid)
         {
-            var list = model.ProductIds.Select(id => _productRepository.GetProduct(id)).ToList() ??
-                       new List<Product?>();
-            foreach (var id in model.ProductIds.Where(id => _productRepository.GetProduct(id)!.IsAlcoholic))
+            var list = model.ProductIds.Select(id => _productRepository.GetProduct(id)).ToList();
+            foreach (var unused in model.ProductIds.Where(id => _productRepository.GetProduct(id)!.IsAlcoholic))
             {
                 mealBox.IsEighteen = true;
             }
 
-            mealBox.Products = list;
+            mealBox.Products = list!;
             _mealBoxRepository.CreateMealBox(mealBox);
             return RedirectToAction("AvailableMealBoxes");
         }
@@ -144,7 +144,7 @@ public class HomeController : Controller
         var e = _employeeRepository.GetEmployeeByEmail(User.Identity!.Name!)!;
         ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
         var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
-        var productIds = box.Products.Select(p => p.Id).ToList();
+        var productIds = box.Products!.Select(p => p.Id).ToList();
         foreach (var c in listCheck.Where(c => productIds.Contains(c.Id)))
         {
             c.IsChecked = true;
@@ -217,7 +217,7 @@ public class HomeController : Controller
         var e = _employeeRepository.GetEmployeeByEmail(User.Identity!.Name!)!;
         ViewBag.ServesWarmMeals = e.Canteen.ServesWarmMeals;
         var listCheck = list.Select(p => new CheckBoxItem { Name = p.Name, Id = p.Id, IsChecked = false }).ToList();
-        var productIds = oldBox.Products.Select(p => p.Id).ToList();
+        var productIds = oldBox.Products!.Select(p => p.Id).ToList();
         foreach (var c in listCheck.Where(c => productIds.Contains(c.Id)))
         {
             c.IsChecked = true;

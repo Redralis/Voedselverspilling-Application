@@ -1,4 +1,4 @@
-﻿@inject SignInManager<IdentityUser> _signInManager;
+﻿@inject SignInManager<IdentityUser> SignInManager;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,7 @@
     <title>@ViewData["Title"] - VoedselVerspillingApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    @* ReSharper disable once Html.PathError not an error *@
     <link rel="stylesheet" href="~/VoedselVerspillingApp.styles.css" asp-append-version="true"/>
 </head>
 <body>
@@ -36,7 +37,7 @@
                     }
                 </ul>
             </div>
-            @if (_signInManager.IsSignedIn(User))
+            @if (SignInManager.IsSignedIn(User))
             {
                 <form method="post" asp-action="logout" asp-controller="Account">
                     <button type="submit" class="nav-link btn btn-link py-0 account-button" style="width: auto">

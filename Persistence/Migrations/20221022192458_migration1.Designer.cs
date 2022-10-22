@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221022141318_migration7")]
-    partial class migration7
+    [Migration("20221022192458_migration1")]
+    partial class migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,7 +147,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("PickUpBy")
                         .HasColumnType("datetime2");
@@ -164,8 +165,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CanteenId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("MealBox");
 
@@ -218,8 +217,8 @@ namespace Persistence.Migrations
                             IsWarmMeal = false,
                             MealType = "Alcohol box",
                             Name = "Alcohol arrangement",
-                            PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
-                            PickUpTime = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpBy = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpTime = new DateTime(2022, 11, 20, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             Price = 30.00m
                         },
                         new
@@ -258,7 +257,7 @@ namespace Persistence.Migrations
                             IsWarmMeal = false,
                             MealType = "Snoep",
                             Name = "Jesse Pinkman Meth Deluxe Snoep",
-                            PickUpBy = new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            PickUpBy = new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             PickUpTime = new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 100.00m
                         });
@@ -568,13 +567,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Student", "ReservedBy")
-                        .WithMany()
-                        .HasForeignKey("StudentId");
-
                     b.Navigation("Canteen");
-
-                    b.Navigation("ReservedBy");
                 });
 
             modelBuilder.Entity("MealBoxProduct", b =>

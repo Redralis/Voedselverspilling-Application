@@ -1,7 +1,5 @@
-﻿using System.Data;
-using Domain;
+﻿using Domain;
 using Domain.Services;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
@@ -61,7 +59,7 @@ public class MealBoxRepository : IMealBoxRepository
     {
         var mealBox = GetMealBox(mealBoxId);
         var student = _studentRepository.GetStudentByEmail(email);
-        if (mealBox!.StudentId != null) return "Maaltijdbox is al gereserveerd!";
+        if (mealBox.StudentId != null) return "Maaltijdbox is al gereserveerd!";
         if (mealBox.IsEighteen)
         {
             if (Convert.ToDateTime(student!.DateOfBirth) > mealBox.PickUpTime.AddYears(-18))
@@ -71,13 +69,13 @@ public class MealBoxRepository : IMealBoxRepository
         }
 
         var box = _context.MealBox.FirstOrDefault(m =>
-            m.PickUpTime.Day == mealBox.PickUpTime.Day && m.StudentId == student.Id);
+            m.PickUpTime.Day == mealBox.PickUpTime.Day && m.StudentId == student!.Id);
         if (box != null)
         {
             return "Student heeft al een maaltijdbox gereserveerd op deze dag!";
         }
 
-        mealBox!.StudentId = student!.Id;
+        mealBox.StudentId = student!.Id;
         _context.MealBox.Update(mealBox);
         _context.SaveChanges();
         return "Maaltijdbox gereserveerd!";
@@ -86,7 +84,7 @@ public class MealBoxRepository : IMealBoxRepository
     public string CancelReservationForMealBox(int mealBoxId)
     {
         var mealBox = GetMealBox(mealBoxId);
-        mealBox!.StudentId = null;
+        mealBox.StudentId = null;
         _context.MealBox.Update(mealBox);
         _context.SaveChanges();
         return "Reservatie geannuleerd!";

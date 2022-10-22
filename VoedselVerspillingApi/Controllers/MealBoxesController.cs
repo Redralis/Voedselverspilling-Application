@@ -26,11 +26,6 @@ public class MealBoxesController : ControllerBase
     [HttpGet]
     public Task<ActionResult<IEnumerable<MealBox>>> GetMealBoxes()
     {
-        if (_mealBoxRepository.GetMealBoxes() == null)
-        {
-            return Task.FromResult<ActionResult<IEnumerable<MealBox>>>(NotFound());
-        }
-
         return Task.FromResult<ActionResult<IEnumerable<MealBox>>>(_mealBoxRepository.GetMealBoxes());
     }
     
@@ -38,18 +33,8 @@ public class MealBoxesController : ControllerBase
     [HttpGet("{id}")]
     public Task<ActionResult<MealBox>> GetMealBoxes(int id)
     {
-        if (_mealBoxRepository.GetMealBoxes() == null)
-        {
-            return Task.FromResult<ActionResult<MealBox>>(NotFound());
-        }
         var mealBox = _mealBoxRepository.GetMealBox(id);
-
-        if (mealBox == null)
-        {
-            return Task.FromResult<ActionResult<MealBox>>(NotFound());
-        }
-
-        return Task.FromResult<ActionResult<MealBox>>(mealBox);
+        return mealBox == null ? Task.FromResult<ActionResult<MealBox>>(NotFound()) : Task.FromResult<ActionResult<MealBox>>(mealBox);
     }
 
     // UPDATE: api/Mealboxes/1

@@ -26,11 +26,6 @@ public class EmployeesController : ControllerBase
     [HttpGet]
     public Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
     {
-        if (_employeeRepository.GetEmployees() == null)
-        {
-            return Task.FromResult<ActionResult<IEnumerable<Employee>>>(NotFound());
-        }
-
         return Task.FromResult<ActionResult<IEnumerable<Employee>>>(_employeeRepository.GetEmployees());
     }
     
@@ -38,18 +33,8 @@ public class EmployeesController : ControllerBase
     [HttpGet("{id}")]
     public Task<ActionResult<Employee>> GetEmployees(int id)
     {
-        if (_employeeRepository.GetEmployees() == null)
-        {
-            return Task.FromResult<ActionResult<Employee>>(NotFound());
-        }
         var employee = _employeeRepository.GetEmployee(id);
-
-        if (employee == null)
-        {
-            return Task.FromResult<ActionResult<Employee>>(NotFound());
-        }
-
-        return Task.FromResult<ActionResult<Employee>>(employee);
+        return employee == null ? Task.FromResult<ActionResult<Employee>>(NotFound()) : Task.FromResult<ActionResult<Employee>>(employee);
     }
 
     // UPDATE: api/Employees/1

@@ -5,15 +5,17 @@ namespace VoedselVerspillingApi.GraphQL
 {  
     public class Query
     {
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable because it is used with DI
+        // and local initialization would lead to strong coupling.
         private readonly IMealBoxRepository _mealBoxRepository;
-        private List<MealBox> list = new();
+        private readonly List<MealBox> _list;
 
         public Query(IMealBoxRepository mealBoxRepository)
         {
             _mealBoxRepository = mealBoxRepository;
-            list = _mealBoxRepository.GetMealBoxes();
+            _list = _mealBoxRepository.GetMealBoxes();
         }
 
-        public IQueryable<MealBox> GetMealBoxes() => list.AsQueryable();
+        public IQueryable<MealBox> GetMealBoxes() => _list.AsQueryable();
     }  
 }

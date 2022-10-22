@@ -26,11 +26,6 @@ public class ProductController : ControllerBase
     [HttpGet]
     public Task<ActionResult<IEnumerable<Product>>> GetProducts()
     {
-        if (_productRepository.GetProducts() == null)
-        {
-            return Task.FromResult<ActionResult<IEnumerable<Product>>>(NotFound());
-        }
-
         return Task.FromResult<ActionResult<IEnumerable<Product>>>(_productRepository.GetProducts());
     }
     
@@ -38,18 +33,8 @@ public class ProductController : ControllerBase
     [HttpGet("{id}")]
     public Task<ActionResult<Product>> GetProducts(int id)
     {
-        if (_productRepository.GetProducts() == null)
-        {
-            return Task.FromResult<ActionResult<Product>>(NotFound());
-        }
         var product = _productRepository.GetProduct(id);
-
-        if (product == null)
-        {
-            return Task.FromResult<ActionResult<Product>>(NotFound());
-        }
-
-        return Task.FromResult<ActionResult<Product>>(product);
+        return product == null ? Task.FromResult<ActionResult<Product>>(NotFound()) : Task.FromResult<ActionResult<Product>>(product);
     }
 
     // UPDATE: api/Products/1

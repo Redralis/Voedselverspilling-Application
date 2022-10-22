@@ -26,11 +26,6 @@ public class CanteenController : ControllerBase
     [HttpGet]
     public Task<ActionResult<IEnumerable<Canteen>>> GetCanteens()
     {
-        if (_canteenRepository.GetCanteens() == null)
-        {
-            return Task.FromResult<ActionResult<IEnumerable<Canteen>>>(NotFound());
-        }
-
         return Task.FromResult<ActionResult<IEnumerable<Canteen>>>(_canteenRepository.GetCanteens());
     }
     
@@ -38,18 +33,9 @@ public class CanteenController : ControllerBase
     [HttpGet("{id}")]
     public Task<ActionResult<Canteen>> GetCanteens(int id)
     {
-        if (_canteenRepository.GetCanteens() == null)
-        {
-            return Task.FromResult<ActionResult<Canteen>>(NotFound());
-        }
         var canteen = _canteenRepository.GetCanteen(id);
 
-        if (canteen == null)
-        {
-            return Task.FromResult<ActionResult<Canteen>>(NotFound());
-        }
-
-        return Task.FromResult<ActionResult<Canteen>>(canteen);
+        return canteen == null ? Task.FromResult<ActionResult<Canteen>>(NotFound()) : Task.FromResult<ActionResult<Canteen>>(canteen);
     }
 
     // UPDATE: api/Canteens/1

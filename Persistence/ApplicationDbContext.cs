@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Domain;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
@@ -16,28 +15,29 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
+        options.UseSqlServer("data source=LAPTOP-HM5F12SM;initial catalog=VoedselVerspillingDb;trusted_connection=true;TrustServerCertificate=True");
     }
 
-    public DbSet<Student> Student { get; set; }
+    public DbSet<Student> Student { get; set; } = null!;
 
-    public DbSet<Product> Product { get; set; }
+    public DbSet<Product> Product { get; set; } = null!;
 
-    public DbSet<MealBox> MealBox { get; set; }
+    public DbSet<MealBox> MealBox { get; set; } = null!;
 
-    public DbSet<Employee> Employee { get; set; }
+    public DbSet<Employee> Employee { get; set; } = null!;
 
-    public DbSet<Canteen> Canteen { get; set; }
+    public DbSet<Canteen> Canteen { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Adding constraints
         // Student cannot be born in future
-        modelBuilder.Entity<Student>(m => m.ToTable(m =>
-            m.HasCheckConstraint("CK_DateOfBirth_NotInFuture", "DateOfBirth <= GetDate()")));
+        modelBuilder.Entity<Student>(m => m.ToTable(t =>
+            t.HasCheckConstraint("CK_DateOfBirth_NotInFuture", "DateOfBirth <= GetDate()")));
 
         // Student cannot be under 16 years old
-        modelBuilder.Entity<Student>(m => m.ToTable(m =>
-            m.HasCheckConstraint("CK_DateOfBirth_NotUnder16", "DateOfBirth <= DATEADD(yyyy,-16,getdate())")));
+        modelBuilder.Entity<Student>(m => m.ToTable(t =>
+            t.HasCheckConstraint("CK_DateOfBirth_NotUnder16", "DateOfBirth <= DATEADD(yyyy,-16,getdate())")));
 
         // Seeded data for testing
         // Making students

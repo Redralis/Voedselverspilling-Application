@@ -26,11 +26,6 @@ public class StudentsController : ControllerBase
     [HttpGet]
     public Task<ActionResult<IEnumerable<Student>>> GetStudents()
     {
-        if (_studentRepository.GetStudents() == null)
-        {
-            return Task.FromResult<ActionResult<IEnumerable<Student>>>(NotFound());
-        }
-
         return Task.FromResult<ActionResult<IEnumerable<Student>>>(_studentRepository.GetStudents());
     }
     
@@ -38,18 +33,8 @@ public class StudentsController : ControllerBase
     [HttpGet("{id}")]
     public Task<ActionResult<Student>> GetStudents(int id)
     {
-        if (_studentRepository.GetStudents() == null)
-        {
-            return Task.FromResult<ActionResult<Student>>(NotFound());
-        }
         var student = _studentRepository.GetStudent(id);
-
-        if (student == null)
-        {
-            return Task.FromResult<ActionResult<Student>>(NotFound());
-        }
-
-        return Task.FromResult<ActionResult<Student>>(student);
+        return student == null ? Task.FromResult<ActionResult<Student>>(NotFound()) : Task.FromResult<ActionResult<Student>>(student);
     }
 
     // UPDATE: api/Students/1

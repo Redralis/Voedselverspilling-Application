@@ -91,12 +91,13 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PickUpTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PickUpBy = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsEighteen = table.Column<bool>(type: "bit", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsWarmMeal = table.Column<bool>(type: "bit", nullable: false),
                     MealType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: true),
                     CanteenId = table.Column<int>(type: "int", nullable: false)
@@ -110,25 +111,18 @@ namespace Persistence.Migrations
                         principalTable: "Canteen",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MealBox_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "MealBoxProduct",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MealBoxId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    MealBoxId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MealBoxProduct", x => x.Id);
+                    table.PrimaryKey("PK_MealBoxProduct", x => new { x.ProductId, x.MealBoxId });
                     table.ForeignKey(
                         name: "FK_MealBoxProduct_MealBox_MealBoxId",
                         column: x => x.MealBoxId,
@@ -170,8 +164,8 @@ namespace Persistence.Migrations
                     { 10, false, "Macarons", "https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 11, false, "Popcorn", "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
                     { 12, false, "Chips", "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1" },
-                    { 13, false, "Blauw Kristal", "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*" },
-                    { 14, false, "Normaal Kristal", "https://americanaddictioncenters.org/wp-content/uploads/2015/10/Methamphetamine-also-known-as-85084955.jpg" }
+                    { 13, false, "Blauw Kristalsnoep", "https://video-images.vice.com/_uncategorized/1491919892314-Blue-Sky-Candy-1.jpeg?resize=500:*" },
+                    { 14, false, "Normaal Kristalsnoep", "https://cdn11.bigcommerce.com/s-1b75a/images/stencil/500w/products/138/3144/DSCN1797__13248.1652210117.JPG?c=2" }
                 });
 
             migrationBuilder.InsertData(
@@ -194,39 +188,39 @@ namespace Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "MealBox",
-                columns: new[] { "Id", "CanteenId", "City", "IsEighteen", "MealType", "Name", "PickUpBy", "PickUpTime", "Price", "StudentId" },
+                columns: new[] { "Id", "CanteenId", "City", "IsEighteen", "IsWarmMeal", "MealType", "Name", "PickUpBy", "PickUpTime", "Price", "StudentId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Breda", false, "Brood box", "Brood assortiment", new DateTime(2022, 11, 12, 15, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 11, 15, 0, 0, 0, DateTimeKind.Unspecified), 22.50m, null },
-                    { 2, 2, "Breda", false, "Warme maaltijd box", "Warme maaltijd", new DateTime(2022, 11, 7, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 5.25m, null },
-                    { 3, 2, "Breda", false, "Drank box", "Drank arrangement", new DateTime(2022, 11, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 15.50m, null },
-                    { 4, 1, "Breda", true, "Alcohol box", "Alcohol arrangement", new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified), 30.00m, null },
-                    { 5, 1, "Breda", false, "Dessert box", "Dessert mix", new DateTime(2022, 11, 23, 14, 20, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 22, 14, 20, 0, 0, DateTimeKind.Unspecified), 17.50m, 1 },
-                    { 6, 3, "Tilburg", false, "Warme maaltijd", "Snacks", new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified), 7.50m, null },
-                    { 7, 1, "Breda", true, "Warme maaltijd", "Jesse Pinkman Meth Deluxe", new DateTime(2022, 11, 22, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 100.00m, null }
+                    { 1, 1, "Breda", false, false, "Brood box", "Brood assortiment", new DateTime(2022, 11, 12, 15, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 11, 15, 0, 0, 0, DateTimeKind.Unspecified), 22.50m, null },
+                    { 2, 2, "Breda", false, true, "Warm eten", "Warme maaltijd", new DateTime(2022, 11, 7, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 5, 13, 30, 0, 0, DateTimeKind.Unspecified), 5.25m, null },
+                    { 3, 2, "Breda", false, false, "Drank box", "Drank arrangement", new DateTime(2022, 11, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 15.50m, null },
+                    { 4, 1, "Breda", true, false, "Alcohol box", "Alcohol arrangement", new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 20, 18, 30, 0, 0, DateTimeKind.Unspecified), 30.00m, null },
+                    { 5, 1, "Breda", false, false, "Dessert box", "Dessert mix", new DateTime(2022, 11, 23, 14, 20, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 22, 14, 20, 0, 0, DateTimeKind.Unspecified), 17.50m, 1 },
+                    { 6, 3, "Tilburg", false, true, "Warm eten", "Snacks", new DateTime(2022, 11, 27, 16, 15, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 26, 16, 15, 0, 0, DateTimeKind.Unspecified), 7.50m, null },
+                    { 7, 1, "Breda", true, false, "Snoep", "Jesse Pinkman Meth Deluxe Snoep", new DateTime(2022, 11, 21, 18, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), 100.00m, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "MealBoxProduct",
-                columns: new[] { "Id", "MealBoxId", "ProductId" },
+                columns: new[] { "MealBoxId", "ProductId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1 },
-                    { 2, 1, 2 },
-                    { 3, 2, 3 },
-                    { 4, 2, 5 },
-                    { 5, 2, 4 },
-                    { 6, 3, 5 },
-                    { 7, 3, 6 },
-                    { 8, 4, 7 },
-                    { 9, 4, 8 },
-                    { 10, 5, 9 },
-                    { 11, 5, 10 },
-                    { 12, 6, 11 },
-                    { 13, 6, 12 },
-                    { 14, 6, 6 },
-                    { 15, 7, 13 },
-                    { 16, 7, 14 }
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 2, 3 },
+                    { 2, 4 },
+                    { 2, 5 },
+                    { 3, 5 },
+                    { 3, 6 },
+                    { 6, 6 },
+                    { 4, 7 },
+                    { 4, 8 },
+                    { 5, 9 },
+                    { 5, 10 },
+                    { 6, 11 },
+                    { 6, 12 },
+                    { 7, 13 },
+                    { 7, 14 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -240,19 +234,9 @@ namespace Persistence.Migrations
                 column: "CanteenId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MealBox_StudentId",
-                table: "MealBox",
-                column: "StudentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MealBoxProduct_MealBoxId",
                 table: "MealBoxProduct",
                 column: "MealBoxId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MealBoxProduct_ProductId",
-                table: "MealBoxProduct",
-                column: "ProductId");
         }
 
         /// <inheritdoc />
@@ -265,6 +249,9 @@ namespace Persistence.Migrations
                 name: "MealBoxProduct");
 
             migrationBuilder.DropTable(
+                name: "Student");
+
+            migrationBuilder.DropTable(
                 name: "MealBox");
 
             migrationBuilder.DropTable(
@@ -272,9 +259,6 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Canteen");
-
-            migrationBuilder.DropTable(
-                name: "Student");
         }
     }
 }

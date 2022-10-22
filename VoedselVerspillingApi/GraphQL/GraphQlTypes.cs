@@ -2,7 +2,7 @@
 
 namespace VoedselVerspillingApi.GraphQL   
 {  
-    public class GraphQLTypes : ObjectType<MealBox>
+    public class GraphQlTypes : ObjectType<MealBox>
     {
     }  
 }
