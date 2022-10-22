@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using VoedselVerspillingApi.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,10 @@ builder.Services.AddScoped<IMealBoxRepository, MealBoxRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
+builder.Services
+    .AddGraphQLServer()
+    .AddQueryType<Query>();
+
 // Add services to the container.
 
 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -30,13 +35,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.MapGraphQL();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

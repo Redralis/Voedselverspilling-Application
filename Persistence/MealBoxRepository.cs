@@ -43,8 +43,7 @@ public class MealBoxRepository : IMealBoxRepository
 
     public List<MealBox> GetMealBoxes()
     {
-        return _context.MealBox.Include(m => m.MealBox_Product)!.ThenInclude(product => product.product).ToList()
-            .OrderBy(m => m.PickUpTime).ToList();
+        return _context.MealBox.Include(m => m.MealBox_Product)!.ThenInclude(product => product.product).ToList();
     }
 
     public List<MealBox> GetAvailableMealBoxes()
