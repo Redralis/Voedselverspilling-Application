@@ -37,11 +37,13 @@ public class MealBoxesController : ControllerBase
         return mealBox == null ? Task.FromResult<ActionResult<MealBox>>(NotFound()) : Task.FromResult<ActionResult<MealBox>>(mealBox);
     }
 
-    // UPDATE: api/Mealboxes/1
+    // UPDATE: api/Mealboxes/1 (only reservation on meal box can be edited currently using email)
     [HttpPut("{id}")]
-    public Task<ActionResult<IEnumerable<MealBox>>> UpdateMealBoxes(int id)
+    public JsonResult UpdateMealBoxes(int id, string email)
     {
-        return Task.FromResult<ActionResult<IEnumerable<MealBox>>>(StatusCode(StatusCodes.Status501NotImplemented, new { message = "Functionality for editing not yet implemented." }));
+        _mealBoxRepository.ReserveMealBox(id, email);
+        return new JsonResult(Ok("Meal box successfully reserved by " + email + ". No further updating functionality" +
+                                 " has been added yet."));
     }
 
     // DELETE: api/Mealboxes/1

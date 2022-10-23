@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 using Domain.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using VoedselVerspillingApi.GraphQL;
@@ -23,6 +25,23 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>();
 
+// Injecting identity database context
+var identityDatabaseConnection = builder.Configuration.GetConnectionString("IDENTITY_CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("IdentityConnection");
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+{
+    if (identityDatabaseConnection != null) options.UseSqlServer(identityDatabaseConnection);
+});
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.SlidingExpiration = true;
+        options.ExpireTimeSpan = new TimeSpan(0, 1, 0);
+    });
+
 // Add services to the container.
 
 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -44,6 +63,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

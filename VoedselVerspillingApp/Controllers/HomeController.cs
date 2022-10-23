@@ -190,7 +190,7 @@ public class HomeController : Controller
                             CanteenId = model.CanteenId,
                             Products = model.ProductIds.Select(id => _productRepository.GetProduct(id)!).ToList()
                         };
-
+                        
                         _mealBoxRepository.DeleteMealBox(_mealBoxRepository.GetMealBox(model.Id)!);
                         _mealBoxRepository.CreateMealBox(box);
                         return RedirectToAction("AvailableMealBoxes");
